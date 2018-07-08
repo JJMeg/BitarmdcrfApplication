@@ -33,7 +33,7 @@ public class CodeToValue {
     /*说明*
     1.CRF3分为2个Map对象，第一个以crf_3命名：包括第一行内容对照；第二个以crf_3_Focus命名：后几行重复focus信息的单一对照；CRF4只有一个表crf_4
     2.CRF5重复的表格部分写在同一个Map中，同上代码所示，例如，术后US统一为postUS，术后实验室部分已写
-    3.CRF5如果有重复以外的多余的部分，已postxxExtra另起命名
+    3.CRF5如果有重复以外的多余的部分，已postxxExtra另起命名   
      */
 
 
