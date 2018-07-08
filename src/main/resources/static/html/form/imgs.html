@@ -1,0 +1,49 @@
+	<script type="text/javascript">
+
+
+
+
+        var arr = uris.split(",");
+        var oImg = $("#img1");//显示图片的标签
+        var index = 0;//定位第几张图片的变量
+        function funTab() {
+            oImg.attr("src",arr[index].trim());
+
+        }
+        function prevImg() {
+            index--;//前一张图片.所以下标要减1
+            if(index < 0) {//如果下标小于 0
+                index = arr.length - 1;//那么下标修改为最大下标  这样就可以循环显示图片
+            }
+            funTab();//显示图片和文字信息
+        }
+
+        function nextImg() {
+            index++;//后一张,所以下标要增加1
+            if(index > arr.length - 1) {//如果移到到数组的最大下标
+                index = 0;//那么下标为0 . 这样就可以循环显示图片
+            }
+            funTab();//显示图片和搭配的文字信息
+        };
+
+        $(function(){
+            funTab(); //第一次运行时 调用一次,进行初始化
+        })
+
+
+	</script>
+</head>
+
+
+
+<div style="margin:15px auto; padding:15px; width:100%;" >
+	<div style="margin:15px auto; padding:auto">
+		<a id="prev" onclick="prevImg()"> < </a>
+		<img id="img1" height="200" width="200" />
+		<a id="next" onclick="nextImg()"> > </a>
+	</div>
+</div>
+
+
+
+

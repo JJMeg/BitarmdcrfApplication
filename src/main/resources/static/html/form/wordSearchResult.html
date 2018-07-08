@@ -1,0 +1,159 @@
+<script type="text/javascript">
+
+var uri;  //TODO:这里uri不能当做全域值，因为viewWord需要获取当前列事实的uri，待改
+
+
+function viewWord() {
+
+    BJUI.navtab({
+        id: 'wordview',
+        url: 'html/form/wordview.html?uri='+uri,
+        data:uri,
+        title: '病历数据查看'
+    })
+
+
+}
+$(function() {
+
+    var data = $('#bjui-navtab .navtab-tab > li.active').data('options');
+    var value;
+    $.each(data,function(key,values){
+        if(key == 'data')
+            value = values;
+    });
+
+
+    $('#j_datagrid').datagrid({
+        height: '100%',
+        gridTitle : '检索结果',
+        showToolbar: true,
+        toolbarItem: 'export,exportf',
+        showCheckboxcol: true,
+        local: 'local',
+        dataUrl: 'data/search_word?'+value,
+
+        showToolbar: true,
+        //toolbarCustom: globallistbar,
+        toolbarItem: 'export,exportf',
+
+       // exportOption: {type:'file', options:{url:'#', loadingmask:true}},
+        paging: {pageSize:50, pageCurrent:10},
+        linenumberAll: true,
+        tableWidth:'100%',
+        noremove: false,
+
+        columns: [
+            {
+                name: 'hospitalID',
+                label: '医院(分中心编号)',
+                align: 'center',
+                width: 70
+            },
+            {
+                name: 'patientID',
+                label: '病例编号',
+                align: 'center',
+                width: 70
+            },
+
+            {
+                label: '病人信息',
+                columns: [{
+                    name: 'patientName',
+                    label: '姓名',
+                    align: 'center',
+                    width: 70
+                },
+                    {
+                        name: 'sex',
+                        label: '性别',
+                        align: 'center',
+                        width: 45,
+
+                    },
+                    {
+                        name: 'age',
+                        label: '年龄',
+                        align: 'center',
+                        type: 'number',
+                        width: 60
+                    }]
+            },
+            {
+                name: 'date',
+                label: '纳入日期',
+                align: 'center',
+                type: 'date',
+                pattern: 'yyyy-MM-dd',
+                width: 150,
+            },
+            {
+                label: '联系方式',
+                columns: [{
+
+                    name: 'contacts',
+                    label: '联系人',
+                    align: 'center',
+                    width: 70
+                },
+                    {
+                        name: 'homePhone',
+                        label: '家庭电话',
+                        align: 'center',
+                        width: 100
+                    },
+                    {
+                        name: 'cellPhone',
+                        label: '手机',
+                        align: 'center',
+                        width: 100
+                    },
+                    {
+                        name: 'wordPhone',
+                        label: '单位电话',
+                        align: 'center',
+                        width: 100
+                    }]
+            },
+            {
+                name: 'uri',
+                label: '操作',
+                align: 'center',
+                render: function (value, data) {uri = data.uri; return '<button type="button" class="btn-blue"  onclick="viewWord()">查看</button>' },
+                width: 70
+            },
+
+        ],
+
+    })
+
+});
+
+
+</script>
+<div class="bjui-pageHeader" style="background-color:#fff; border-bottom:none;">
+    <form data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+        <fieldset>
+            <legend style="font-weight:normal;">关键词搜索：</legend>
+            <div style="margin:0; padding:1px 5px 5px;">
+               <!-- <span>病人编号：</span> -->
+                <input type="text" name="obj.code" class="form-control" size="60">
+
+                <label id="test"></label>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn-green" data-icon="search" >搜索</button>
+                    <button type="button" class="btn-green" data-icon="search" data-toggle="dialog"
+                            data-options="{id:'advance_search', url:'../../html/form/advance-search.html',
+                            width:1200, height:500, mask:true,title:'高级检索'}">高级检索</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="bjui-pageContent">
+    <table id="j_datagrid" class="table table-bordered">
+    </table>
+</div>
+

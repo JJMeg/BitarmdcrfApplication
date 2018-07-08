@@ -1,0 +1,23 @@
+
+<div class="bjui-pageHeader" style="background-color:#fff; border-bottom:none;">
+    <form data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+        <fieldset>
+            <legend style="font-weight:normal;">关键词搜索：</legend>
+            <div style="margin:0; padding:1px 5px 5px;">
+                <!-- <span>病人编号：</span> -->
+                <input type="text" name="obj.code" class="form-control" size="60">
+
+
+
+                <div class="btn-group">
+                    <button type="submit" class="btn-green" data-icon="search" >搜索</button>
+                    <button type="button" class="btn-green" data-icon="search" data-toggle="dialog"
+                            data-options="{id:'advance_search', url:'../../html/form/advance-search-img.html',
+                            width:1200, height:500, mask:true,title:'高级检索'}">高级检索</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+

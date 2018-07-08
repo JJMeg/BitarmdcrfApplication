@@ -1,0 +1,124 @@
+<form action="" id="img_import" data-toggle="validate" data-alertmsg="false"  style=" padding:10px; margin: 10px; border:1px #999 solid; border-radius:5px;">
+    <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+    <div class="bjui-row col-2" >
+
+        <label class="row-label">导入数据URI:</label>
+        <div class="row-input required">
+            <input type="text" name="img.uri" data-rule="required" id="img_import_uri" value="file:/" >
+        </div>
+        <hr style="margin:5px 0 15px;">
+        <div class="text-center">
+            <button type="button" class="btn-default" data-icon="save"  onclick="img_submit()">批量导入</button>
+        </div>
+    </div>
+</form>
+
+<form action="" id="img_info_import" data-toggle="validate" data-alertmsg="false" style=" padding:10px; margin: 10px; border:1px #999 solid; border-radius:5px;">
+    <div class="bjui-row col-2">
+        <label class="row-label">导入数据URI:</label>
+        <div class="row-input required">
+            <input type="text" name="uri" id="img_info_uri" data-rule="required" value="file:/" >
+        </div>
+
+        <label class="row-label">病人编号:</label>
+        <div class="row-input  required">
+            <input type="text" name="patientid" data-rule="required" id="img_info_patient">
+        </div>
+        <label class="row-label">医院编号:</label>
+        <div class="row-input  required">
+            <input type="text" name="hospitalid" data-rule="required" id="img_info_hospital">
+        </div>
+
+        <label class="row-label">病人姓名:</label>
+        <div class="row-input ">
+            <input type="text" name="patientname" id="img_info_name">
+        </div>
+
+        <label class="row-label">病人年龄:</label>
+        <div class="row-input ">
+            <input type="text" name="patientage" id="img_info_age">
+        </div>
+
+        <label class="row-label">病人性别:</label>
+        <div class="row-input">
+            <input type="radio" name="patientsex" id="j_custom_male" data-toggle="icheck" value="男"  data-label="男  ">
+            <input type="radio" name="patientsex" id="j_custom_female" data-toggle="icheck" value="女" data-label="女">
+        </div>
+
+        <label class="row-label">手术阶段:</label>
+        <div class="row-input  required">
+            <select data-toggle="selectpicker" data-rule="required" data-width="200" name="studystage" multiple="">
+                <option value="0">术前</option>
+                <option value="1">术中</option>
+                <option value="2">术后即时</option>
+                <option value="3">术后7天内</option>
+                <option value="4">术后一个月</option>
+                <option value="5">术后三个月</option>
+                <option value="6">术后六个月</option>
+                <option value="7">术后九个月</option>
+                <option value="8">术后十二个月</option>
+                <option value="9">术后十八个月</option>
+                <option value="11">术后二十四个月</option>
+                <option value="12">术后三十个月</option>
+                <option value="13">术后三十六个月</option>
+            </select>
+        </div>
+
+        <label class="row-label">纳入日期</label>
+        <div class="row-input">
+            <input type="text" name="importdate" value="" data-toggle="datepicker" placeholder="点击选择日期">
+        </div>
+
+
+        <label class="row-label">数据类型:</label>
+        <div class="row-input  required">
+        <input type="radio" name="datatype" id="j_custom_vedio"  data-toggle="icheck" value="video"  data-label="视频  ">
+        <input type="radio" name="datatype" id="j_custom_img" checked="true" data-toggle="icheck" value="img" data-label="图像">
+        </div>
+
+        <label class="row-label">检查类型:</label>
+        <div class="row-input  required">
+            <input type="radio" checked="true" name="studytype" id="j_custom_us" data-toggle="icheck" value="US" data-label="US  ">
+            <input type="radio" name="studytype" id="j_custom_ceus" data-toggle="icheck" value="CEUS" data-label="CEUS">
+            <input type="radio" name="studytype" id="j_custom_mri" data-toggle="icheck" value="MRI" data-label="MRI">
+            <input type="radio" name="studytype" id="j_custom_ct" data-toggle="icheck" value="CT" data-label="CT">
+        </div>
+
+
+    </div>
+    <hr style="margin:5px 0 15px;">
+    <div class="text-center">
+    <button type="submit" class="btn-default" data-icon="save">开始导入</button>
+    </div>
+</form>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function img_submit() {
+        BJUI.ajax('doajax', {
+            url: '/data/importimg',
+            data:$('#img_import').serialize(),
+            loadingmask: true,
+            okCallback: function(json) {
+                BJUI.alertmsg('ok', json.mess);
+            }
+        })
+    }
+
+
+
+    $("#img_info_import").submit(function(){
+        BJUI.ajax('doajax', {
+            url: '/data/import_info_img',
+            data:$('#img_info_import').serialize(),
+            loadingmask: true,
+            okCallback: function(json) {
+                BJUI.alertmsg('ok', json.mess);
+            }
+    })
+    });
+</script>

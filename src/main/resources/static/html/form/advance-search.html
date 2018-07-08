@@ -1,0 +1,95 @@
+
+<form action="" id="img_info_import" data-toggle="validate" data-alertmsg="false" style=" padding:10px; margin: 10px; border:1px #999 solid; border-radius:5px;">
+    <div class="bjui-row col-2">
+
+        <label class="row-label">病人编号:</label>
+        <div class="row-input ">
+            <input type="text" name="caseID" id="img_info_patient">
+        </div>
+        <label class="row-label">医院编号:</label>
+        <div class="row-input ">
+            <input type="text" name="hospitalID" id="img_info_hospital">
+        </div>
+
+        <label class="row-label">病人姓名:</label>
+        <div class="row-input ">
+            <input type="text" name="name" id="img_info_name">
+        </div>
+
+        <label class="row-label">病人年龄:</label>
+        <div class="row-input ">
+            <!--<input type="text" name="age" id="img_info_age">  -->
+            <input type="text" name="ageMin" value="0" data-toggle="spinner" size="10">
+            至
+            <input type="text" name="ageMax" value="" data-toggle="spinner" size="10">
+        </div>
+
+        <label class="row-label">病人性别:</label>
+        <div class="row-input">
+            <input type="radio" name="sex" id="j_custom_male" data-toggle="icheck" value="男"  data-label="男  ">
+            <input type="radio" name="sex" id="j_custom_female" data-toggle="icheck" value="女" data-label="女">
+        </div>
+
+        <label class="row-label">术前检查:</label>
+        <div class="row-input">
+            <input type="checkbox" name="preStudy" id="US" value="US" data-toggle="icheck" data-label="US">
+            <input type="checkbox" name="preStudy" id="CEUS" value="CEUS" data-toggle="icheck" data-label="CEUS">
+            <input type="checkbox" name="preStudy" id="CT" value="CT" data-toggle="icheck" data-label="CT">
+            <input type="checkbox" name="preStudy" id="MRI" value="MRI" data-toggle="icheck" data-label="MRI">
+            <input type="checkbox" name="preStudy" id="LAB" value="实验室" data-toggle="icheck" data-label="实验室">
+        </div>
+
+
+        <label class="row-label">手术阶段:</label>
+        <div class="row-input">
+            <select name="postStage" data-toggle="selectpicker" data-nextselect="study-type" multiple="" >
+                <option value="">--术后阶段--</option>
+                <option value="七天">七天</option>
+                <option value="一个月">一个月</option>
+            </select>
+            <select name="postStudy" id="study-type" data-toggle="selectpicker"  multiple="">
+                <option value="">--检查类型--</option>
+                <option value="US">US</option>
+                <option value="CEUS">CEUS</option>
+            </select>
+        </div>
+
+        <label class="row-label">纳入日期:</label>
+        <div class="row-input">
+            <input type="text"  style="width:150px" name="dateMin" value="" data-toggle="datepicker" size="small" placeholder="点击选择日期">
+            至
+            <input type="text"  style="width:150px" name="dateMax" value="" data-toggle="datepicker"  size="small" placeholder="点击选择日期">
+        </div>
+
+
+
+
+
+    </div>
+    <hr style="margin:5px 0 15px;">
+    <div class="text-center">
+    <button type="button" class="btn-default" data-icon="search" onclick="search()" >搜索</button>
+    </div>
+</form>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button id="closewin" type="button" class="btn-close" data-icon="close">关闭</button></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+    function search() {
+
+        BJUI.navtab({
+            id: 'wordsearch',
+            url: 'html/form/wordSearchResult.html',
+            data:$('#img_info_import').serialize(),
+            title: '文本数据检索结果'
+        })
+
+        $("#closewin").click();
+
+
+    }
+</script>

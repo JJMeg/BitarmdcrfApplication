@@ -1,0 +1,35 @@
+<form action="" id="word_import" data-toggle="validate" data-alertmsg="false"  style=" padding:10px; margin: 10px; border:1px #999 solid; border-radius:5px;">
+    <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+    <div class="bjui-row col-2" >
+
+        <label class="row-label">导入数据URI:</label>
+        <div class="row-input">
+            <input type="text" name="word.uri" id="word_import_uri" value="file:/" >
+        </div>
+        <hr style="margin:5px 0 15px;">
+        <div class="text-center">
+            <button type="button" class="btn-default" data-icon="save" onclick="word_submit();" >批量导入</button>
+        </div>
+    </div>
+</form>
+
+
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+function word_submit() {
+    BJUI.ajax('doajax', {
+        url: '/data/importword',
+        data:$('#word_import').serialize(),
+        loadingmask: true,
+        okCallback: function(json) {
+             BJUI.alertmsg('ok', json.mess);
+        }
+    })
+}
+</script>
