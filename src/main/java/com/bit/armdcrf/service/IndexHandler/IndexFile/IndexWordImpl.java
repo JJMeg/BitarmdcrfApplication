@@ -14,6 +14,7 @@ import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.document.*;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 
 import org.apache.lucene.store.FSDirectory;
@@ -83,10 +84,12 @@ public class IndexWordImpl implements IndexWord{
                 return false;
             }
         document = new Document();
+
         document.add(new StringField("uri",file.toString(), Store.YES));
         setCrf1Field(file.toString());
         setCrf2Field(file.toString());
        // document.add(new StringField("uri",file, Store.YES));
+        writer.deleteDocuments(new Term("uri",file.toString()));
         writer.addDocument(document);
         return  true;
 

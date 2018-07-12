@@ -2,6 +2,7 @@ package com.bit.armdcrf.dictionary;
 
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,6 +38,14 @@ public class CodeToValue {
      */
 
 
+    public Map<String,String> getAll(){
+        Map<String,String> all = new HashMap<>();
+        all.putAll(crf_1_1);
+        all.putAll(crf_1_2);
+        all.putAll(crf_2_1);
+        all.putAll(labStudy);
+        return all;
+    }
 
     public CodeToValue(){
         crf_1_1.put("hospitalID","医院（分中心编号）");

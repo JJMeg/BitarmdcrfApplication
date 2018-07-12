@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Debbie Qiu
@@ -106,6 +103,34 @@ public class DataController {
         result.put("content","成功！");
         result.put("statusCode","200");
         return rs;
+    }
+
+    @RequestMapping(value = "search_word_express", method = RequestMethod.POST)
+    public List<WordData> searchWordExpress(String data){
+        if(data.length()>4)
+            data = data.substring(5);
+        List<WordData> rs = wordDataHandler.search(data);
+        if(rs == null)
+            return new ArrayList<>();
+        else
+            return rs;
+    }
+
+    @RequestMapping(value = "search_img_express", method = RequestMethod.POST)
+    public List<JSONObject> searchImgExpress(String data){
+        if(data.length()>4)
+            data = data.substring(5);
+        List<JSONObject> json = new LinkedList<JSONObject>();
+        List<ImgData> imgdata = imgDataHandler.searchByExpress(data);
+        for(ImgData imgData:imgdata) {
+            String s = imgData.getImgdata().toString();
+            JSONObject jsonImg = JSONObject.parseObject(s);
+            JSONObject jsonUri = JSONObject.parseObject("{uris:'"+imgData.getUris().toString()+"'}");
+            jsonImg.putAll(jsonUri);
+            json.add(jsonImg);
+
+        }
+        return json;
     }
 
     @RequestMapping(value = "search_img_advanced", method = RequestMethod.POST)

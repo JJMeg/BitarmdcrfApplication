@@ -15,5 +15,7 @@ public interface IndexSearch {
     public List<WordData> searchWord(Map<String,Map<String,String>> termSet);
     public List<String> searchWordId(String search);
     public List<String> searchWordId(Map<String,Map<String,String>> termSet);
+    public List<WordData> getAll();
+    public List<String> getAllId();
 
 }

@@ -3,9 +3,9 @@
     <div class="bjui-row col-4">
 
         <label class="row-label" style="width:200px;">术前实验室检查:</label>
-        <div class="row-input ">
-            <input type="checkbox" name="labStudy" id="lab1" value="有" data-toggle="icheck" data-label="有">
-            <input type="checkbox" name="labStudy" id="lab2" value="否" data-toggle="icheck" data-label="否">
+        <div class="row-input required">
+            <input type="checkbox" data-rule="required" name="labStudy" id="lab1" value="有" data-toggle="icheck" data-label="有">
+            <input type="checkbox" data-rule="required" name="labStudy" id="lab2" value="否" data-toggle="icheck" data-label="否">
         </div>
         <br>
     <!--</div>-->
@@ -183,8 +183,8 @@
         <br>
 
         <label class="row-label" style="width:200px;">记录者签名:</label>
-        <div class="row-input ">
-            <input type="text" name="recorder" id="recorder" size="10">
+        <div class="row-input required">
+            <input type="text" data-rule="required" name="recorder" id="recorder" size="10">
         </div>
     </div>
 

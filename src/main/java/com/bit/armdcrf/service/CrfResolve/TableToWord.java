@@ -41,23 +41,31 @@ public class TableToWord {
 
         try {
             //获取word文档解析对象
-            XWPFDocument document = new XWPFDocument(POIXMLDocument.openPackage(uri));
+           // XWPFDocument document = new XWPFDocument(POIXMLDocument.openPackage(uri));
+            XWPFDocument document = new XWPFDocument();
             int a = 0;
-            for(int i=sLine;i<eLine;i++,a++){
-                XWPFParagraph p=document.getParagraphArray(i);
-
-                // TODO:把段落内的都一点点移除，然后尝试直接写text进去看看
-
-
-                List<XWPFRun> runs = p.getRuns();
-                for (int j = runs.size() - 1; j >= 0; j--) {
-                    p.removeRun(j);
-                }
-                if(a<cons.length) {
-                    XWPFRun runn = p.createRun();
-                    runn.setText(cons[a]);
-                }
+            for(String s:cons) {
+                XWPFParagraph p = document.createParagraph();
+                XWPFRun run = p.createRun();
+                run.setText(s);
             }
+
+
+//            for(int i=sLine;i<eLine;i++,a++){
+//                XWPFParagraph p=document.getParagraphArray(i);
+//
+//                // TODO:把段落内的都一点点移除，然后尝试直接写text进去看看
+//
+//
+//                List<XWPFRun> runs = p.getRuns();
+//                for (int j = runs.size() - 1; j >= 0; j--) {
+//                    p.removeRun(j);
+//                }
+//                if(a<cons.length) {
+//                    XWPFRun runn = p.createRun();
+//                    runn.setText(cons[a]);
+//                }
+//            }
 
             //生成新的word
             File file = new File(sUri);

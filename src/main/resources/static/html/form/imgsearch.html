@@ -4,16 +4,24 @@
         <fieldset>
             <legend style="font-weight:normal;">关键词搜索：</legend>
             <div style="margin:0; padding:1px 5px 5px;">
-                <!-- <span>病人编号：</span> -->
-                <input type="text" name="obj.code" class="form-control" size="60">
+
+                <input type="text" name="obj.code" id="code" class="form-control" list="list" size="60" style="width: 600px;"
+                value="">
+
 
 
 
                 <div class="btn-group">
-                    <button type="submit" class="btn-green" data-icon="search" >搜索</button>
+                    <button type="button" class="btn-green" data-icon="search" onclick="search()">搜索</button>
                     <button type="button" class="btn-green" data-icon="search" data-toggle="dialog"
                             data-options="{id:'advance_search', url:'../../html/form/advance-search-img.html',
                             width:1200, height:500, mask:true,title:'高级检索'}">高级检索</button>
+                </div>
+
+
+
+                <div class = "col-1" style="padding: 5px;">
+                    <label id="expre">检索表达式:</label>
                 </div>
             </div>
         </fieldset>
@@ -21,3 +29,8 @@
 </div>
 
 
+<script type="text/javascript" src="B-JUI/js/dist/imgsearch.js"></script>
+
+<datalist id="list">
+
+</datalist>

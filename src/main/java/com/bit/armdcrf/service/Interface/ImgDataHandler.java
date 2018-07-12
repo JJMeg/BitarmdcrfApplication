@@ -13,6 +13,7 @@ import java.util.List;
 public interface ImgDataHandler {
 
     public List<ImgData> search(SearchData searchData);
+    public List<ImgData> searchByExpress(String data);
     public List<String> add(String uri);
     public int delete(String id,boolean diskClean);
     public int update(Imgdata imgdata);

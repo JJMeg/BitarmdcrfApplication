@@ -50,6 +50,20 @@ public class ImgDataHandlerImpl implements ImgDataHandler{
     }
 
     @Override
+    public List<ImgData> searchByExpress(String data) {
+        List<String> ids = wordDataHandler.searchWordIdByExpress(data);
+        List<Imgdata> imgdata = new LinkedList<>();
+        List<ImgData> imgData = new LinkedList<>();
+        for(String id:ids){
+            imgdata = imgdataMapper.selectByPatientid(id);
+            imgData.addAll(toGroup(imgdata));
+
+        }
+        return imgData;
+    }
+
+
+    @Override
     public List<String> add(String uri) {
         List<String> failFile  = new ArrayList<>();
 

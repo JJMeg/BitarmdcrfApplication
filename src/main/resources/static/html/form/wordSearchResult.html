@@ -16,12 +16,18 @@ function viewWord() {
 }
 $(function() {
 
+
+
+
     var data = $('#bjui-navtab .navtab-tab > li.active').data('options');
+
     var value;
     $.each(data,function(key,values){
         if(key == 'data')
             value = values;
     });
+
+
 
 
     $('#j_datagrid').datagrid({
@@ -32,7 +38,6 @@ $(function() {
         showCheckboxcol: true,
         local: 'local',
         dataUrl: 'data/search_word?'+value,
-
         showToolbar: true,
         //toolbarCustom: globallistbar,
         toolbarItem: 'export,exportf',

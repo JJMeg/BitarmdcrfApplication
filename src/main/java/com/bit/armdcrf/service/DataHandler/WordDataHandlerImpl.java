@@ -89,14 +89,15 @@ public class WordDataHandlerImpl implements WordDataHandler {
     }
 
     @Override
-    public WordData search(String search) {
-        return null;
+    public List<WordData> search(String search) {
+        if(search.equals(""))
+            return indexSearch.getAll();
+        else
+            return indexSearch.searchWord(search);
     }
 
     @Override
     public List<WordData> advancedSearch(SearchData searchData) {
-
-         //Map<String,Map<String,String>> test = searchData.toTerm();
 
         return indexSearch.searchWord(searchData.toQueryEL());
 
@@ -108,6 +109,15 @@ public class WordDataHandlerImpl implements WordDataHandler {
 
         return indexSearch.searchWordId(searchData.toQueryEL());
     }
+    @Override
+    public List<String> searchWordIdByExpress(String data) {
+        if(data.equals(""))
+            return indexSearch.getAllId();
+        else
+            return indexSearch.searchWordId(data);
+    }
+
+
 
     @Override
     public Crf viewWord(String uri, String part) {

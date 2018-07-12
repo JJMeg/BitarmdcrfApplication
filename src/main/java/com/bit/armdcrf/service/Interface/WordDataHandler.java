@@ -15,9 +15,10 @@ import java.util.List;
 public interface WordDataHandler {
 
     public boolean add(String uri);
-    public WordData search(String search);
+    public List<WordData> search(String search);
     public List<WordData> advancedSearch(SearchData searchData);
     public List<String> searchWordId(SearchData searchData);
+    public List<String> searchWordIdByExpress(String data);
     public Crf viewWord(String uri, String part);
     public void updateWord(Crf crf,String uri);
 }

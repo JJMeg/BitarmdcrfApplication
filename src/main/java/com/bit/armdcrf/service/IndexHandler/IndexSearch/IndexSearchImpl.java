@@ -34,20 +34,24 @@ public class IndexSearchImpl implements IndexSearch {
     DirectoryReader reader;
 
 
-    public void getSearcher(){
+    public boolean getSearcher(){
         Directory dir = null;
         try {
             dir = FSDirectory.open(Paths.get(indexDir));
             reader = DirectoryReader.open(dir);
             searcher = new IndexSearcher(reader);
+            return true;
         } catch (IOException e) {
+
             e.printStackTrace();
+            return false;
         }
 
     }
 
     public List<WordData> queryPrase(String query){
-        getSearcher();
+        if(!getSearcher())
+            return null;
         QueryParser parser = new QueryParser("姓名",new StandardAnalyzer());
         try {
             int count = reader.maxDoc();   //获取所有文档数
@@ -67,7 +71,8 @@ public class IndexSearchImpl implements IndexSearch {
 
 
     public List<String> queryPraseReturnId(String query){
-        getSearcher();
+        if(!getSearcher())
+            return null;
         QueryParser parser = new QueryParser("姓名",new StandardAnalyzer());
         List<String> ids = new LinkedList<>();
         try {
@@ -151,7 +156,8 @@ public class IndexSearchImpl implements IndexSearch {
 
     @Override
     public List<WordData> searchWord(String parse) {
-        getSearcher();
+        if(!getSearcher())
+            return null;
         return queryPrase(parse);
     }
 
@@ -159,13 +165,15 @@ public class IndexSearchImpl implements IndexSearch {
     @Override
     public List<WordData> searchWord(Map<String, Map<String, String>> termSet) {
 
-        getSearcher();
+        if(!getSearcher())
+            return null;
         return advancedSearchWord(termSet);
     }
 
     @Override
     public List<String> searchWordId(String parse) {
-        getSearcher();
+        if(!getSearcher())
+            return null;
         return queryPraseReturnId(parse);
     }
 
@@ -220,6 +228,57 @@ public class IndexSearchImpl implements IndexSearch {
 
         }
         return null;
+    }
+
+
+    @Override
+    public List<WordData> getAll(){
+        List<WordData> rs = new LinkedList<>();
+        if(!getSearcher())
+            return null;
+        int count = reader.maxDoc();//所有文档数
+        try {
+            for(int i = 0; i < count; i++){
+                Document document = searcher.doc(i);
+                WordData data = new WordData();
+                data.setAge(Integer.parseInt(document.get(codeToValue.get("hospitalID"))));
+                data.setCellPhone(document.get(codeToValue.get("cellphone")));
+                data.setContacts(document.get(codeToValue.get("contact")));
+
+                data.setDate(document.get(codeToValue.get("date")));
+                data.setHomePhone(document.get(codeToValue.get("homephone")));
+                data.setHospitalID(document.get(codeToValue.get("hospitalID")));
+                data.setPatientID(document.get(codeToValue.get("caseID")));
+                data.setPatientName(document.get(codeToValue.get("name")));
+                data.setSex(document.get(codeToValue.get("sex")));
+                data.setUri(document.get("uri"));
+                data.setWorkPhone(document.get(codeToValue.get("workphone")));
+                rs.add(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return rs;
+
+    }
+
+    @Override
+    public List<String> getAllId(){
+
+        List<String> ids = new LinkedList<>();
+        if(!getSearcher())
+            return ids;
+        int count = reader.maxDoc();//所有文档数
+        try {
+            for(int i = 0; i < count; i++){
+                Document document = searcher.doc(i);
+                ids.add(document.get(codeToValue.get("caseID")));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ids;
+
     }
 
 }

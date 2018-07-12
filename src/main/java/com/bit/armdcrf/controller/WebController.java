@@ -1,6 +1,8 @@
 package com.bit.armdcrf.controller;
 
 import com.alibaba.fastjson.JSONArray;
+import com.bit.armdcrf.dictionary.CodeToValue;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Debbie Qiu
@@ -30,26 +35,41 @@ public class WebController {
     @Autowired
     DefaultKaptcha defaultKaptcha;
 
+
+    @ResponseBody
+    @RequestMapping("/wordlist")
+    public List<String> searchWordList() throws IOException{
+        CodeToValue codeToValue  = new CodeToValue();
+        List<String> list = new ArrayList<String>();
+        Map<String,String> words = codeToValue.getAll();
+        for(Map.Entry<String,String > map:words.entrySet()){
+            list.add(map.getValue());
+        }
+        return list;
+    }
+
+
+
     @ResponseBody
     @RequestMapping("/menu-form")
     public JSONArray crfWordResolveTest() throws IOException {
 
         JSONArray jsonObject = JSONArray.parseArray("[" +
-                "    {'name':'用户管理','children':[" +
-                "    {'id':'user-tree', 'name':'用户管理', 'target':'navtab', 'url':'html/form/user-tree.html'}" +
-                "    ]}" +
+//                "    {'name':'用户管理','children':[" +
+//                "    {'id':'user-tree', 'name':'用户管理', 'target':'navtab', 'url':'html/form/user-tree.html'}" +
+//                "    ]}" +
                 "    {'name':'数据导入', 'children':[" +
                 "        {'id':'word-input', 'name':'文本数据导入', 'target':'navtab', 'url':'html/form/wordinput.html'}," +
                 "        {'id':'img-nput', 'name':'影像数据导入', 'target':'navtab', 'url':'html/form/imginput.html'}," +
-                "        {'id':'img-view', 'name':'文本数据详细', 'target':'navtab', 'url':'html/form/wordview.html'}," +
+//                "        {'id':'img-view', 'name':'文本数据详细', 'target':'navtab', 'url':'html/form/wordview.html'}," +
                 "    ]}," +
                 "    {'name':'数据检索', 'children':[" +
                 "        {'id':'wordsearch', 'name':'文本数据检索', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
                 "        {'id':'imgsearch', 'name':'影像数据检索', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
                 "    ]}" +
-                "    {'name':'日志管理','children':[" +
-                "    {'id':'user-tree', 'name':'日志管理', 'target':'navtab', 'url':'html/form/user-tree.html'}" +
-                "    ]}" +
+//                "    {'name':'日志管理','children':[" +
+//                "    {'id':'user-tree', 'name':'日志管理', 'target':'navtab', 'url':'html/form/user-tree.html'}" +
+//                "    ]}" +
                 "]");
 
         return jsonObject;
