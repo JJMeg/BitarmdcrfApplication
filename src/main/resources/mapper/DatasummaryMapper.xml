@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bit.armdcrf.dao.dataSummaryDao">
+  <resultMap id="BaseResultMap" type="com.bit.armdcrf.entity.Datasummary">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="patientName" jdbcType="VARCHAR" property="patientname" />
+    <result column="patientId" jdbcType="VARCHAR" property="patientid" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="fileName" jdbcType="VARCHAR" property="filename" />
+    <result column="fileNum" jdbcType="SMALLINT" property="filenum" />
+    <result column="fileServer" jdbcType="TINYINT" property="fileserver" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.bit.armdcrf.entity.Datasummary">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="patientName" jdbcType="VARCHAR" property="patientname" />
+    <result column="patientId" jdbcType="VARCHAR" property="patientid" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="fileName" jdbcType="VARCHAR" property="filename" />
+    <result column="fileNum" jdbcType="SMALLINT" property="filenum" />
+    <result column="fileServer" jdbcType="TINYINT" property="fileserver" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <select id="getById" parameterType="long" resultType="com.bit.armdcrf.entity.Datasummary">
+    SELECT * FROM
+    dataSummary
+    WHERE
+    id = #{id}
+  </select>
+
+  <select id="getByPatientName" parameterType="string" resultType="com.bit.armdcrf.entity.Datasummary">
+    SELECT * FROM
+    dataSummary
+    WHERE
+    patientname = #{patientame}
+  </select>
+
+  <select id="getByPatientId" parameterType="string" resultType="com.bit.armdcrf.entity.Datasummary">
+    SELECT * FROM
+    dataSummary
+    WHERE
+    patientid = #{patientid}
+  </select>
+
+  <select id="getByCreator" parameterType="string" resultType="com.bit.armdcrf.entity.Datasummary">
+    SELECT * FROM
+    dataSummary
+    WHERE
+    creator = #{creator}
+  </select>
+
+  <select id="getByFileName" parameterType="string" resultType="com.bit.armdcrf.entity.Datasummary">
+    SELECT * FROM
+    dataSummary
+    WHERE
+    filename = #{filename}
+  </select>
+
+  <select id="getByFileServer" parameterType="int" resultType="com.bit.armdcrf.entity.Datasummary">
+    SELECT * FROM
+    dataSummary
+    WHERE
+    fileserver = #{fileserver}
+  </select>
+</mapper>

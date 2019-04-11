@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bit.armdcrf.dao.dataUsageDao">
+  <resultMap id="BaseResultMap" type="com.bit.armdcrf.entity.Datausage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="SMALLINT" property="id" />
+    <result column="segment" jdbcType="VARCHAR" property="segment" />
+    <result column="registration" jdbcType="VARCHAR" property="registration" />
+    <result column="reconstruct" jdbcType="VARCHAR" property="reconstruct" />
+    <result column="VR" jdbcType="VARCHAR" property="vr" />
+    <result column="restoration" jdbcType="VARCHAR" property="restoration" />
+    <result column="feature" jdbcType="VARCHAR" property="feature" />
+  </resultMap>
+
+  <select id="getBySummaryId" parameterType="long" resultType="com.bit.armdcrf.entity.Datausage">
+    SELECT * FROM
+    dataType
+    WHERE
+    datasummaryid = #{summaryId}
+  </select>
+
+  <select id="getAllBySegment" parameterType="string" resultType="list">
+    SELECT * FROM
+    dataUsage
+    WHERE
+    segment = #{segment}
+  </select>
+
+  <select id="getAllByRegistration" parameterType="string" resultType="list">
+    SELECT * FROM
+    dataUsage
+    WHERE
+    registration = #{registration}
+  </select>
+
+  <select id="getAllByReconstruct" parameterType="string" resultType="list">
+    SELECT * FROM
+    dataUsage
+    WHERE
+    reconstruct = #{reconstruct}
+  </select>
+
+  <select id="getAllByVR" parameterType="string" resultType="list">
+    SELECT * FROM
+    dataUsage
+    WHERE
+    vr = #{VR}
+  </select>
+
+  <select id="getAllByRestoration" parameterType="string" resultType="list">
+    SELECT * FROM
+    dataUsage
+    WHERE
+    restoration = #{restoration}
+  </select>
+
+  <select id="getAllByFeature" parameterType="string" resultType="list">
+    SELECT * FROM
+    dataUsage
+    WHERE
+    feature = #{feature}
+  </select>
+
+</mapper>

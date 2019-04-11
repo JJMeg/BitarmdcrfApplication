@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bit.armdcrf.dao.fileServerDao">
+    <resultMap id="BaseResultMap" type="com.bit.armdcrf.entity.Fileserver">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="SMALLINT" property="id"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="port" jdbcType="SMALLINT" property="port"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <select id="getById" parameterType="int" resultType="com.bit.armdcrf.entity.Fileserver">
+    SELECT * FROM
+    fileServer
+    WHERE
+    id = #{id}
+  </select>
+
+    <select id="getByName" parameterType="string" resultType="com.bit.armdcrf.entity.Fileserver">
+    SELECT * FROM
+    fileServer
+    WHERE
+    name = #{name}
+  </select>
+
+    <select id="getByIp" parameterType="string" resultType="com.bit.armdcrf.entity.Fileserver">
+    SELECT * FROM
+    fileServer
+    WHERE
+    ip = #{ip}
+  </select>
+
+</mapper>

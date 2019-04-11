@@ -3,8 +3,6 @@ package com.bit.armdcrf.other;
 import com.bit.armdcrf.dictionary.CodeToValue;
 import com.bit.armdcrf.entity.Crf.Crf;
 import com.bit.armdcrf.entity.Crf.Crf2_1;
-import org.apache.xmlbeans.impl.xb.ltgfmt.Code;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.util.Map;

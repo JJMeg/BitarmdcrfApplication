@@ -21,11 +21,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     private CustomUserDetailsService customUserDetailsService;
 
 
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
-//        auth.inMemoryAuthentication().withUser("demo").password("123456").roles("USER");
-//    }
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception{
+        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("demo").password("123456").roles("USER");
+    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception{
@@ -51,9 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         webSecurity.ignoring().antMatchers("/login.html","/login_timeout.html","/assets/**",
                 "/B-JUI/**","/images/**","/json/**");
     }
-
-
-
 
 
     @Bean

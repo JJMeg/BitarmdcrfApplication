@@ -1,10 +1,5 @@
 package com.bit.armdcrf.dto;
 import com.bit.armdcrf.model.Imgdata;
-import sun.jvm.hotspot.utilities.IntegerEnum;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**

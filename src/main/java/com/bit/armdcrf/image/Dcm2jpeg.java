@@ -1,5 +1,5 @@
 package com.bit.armdcrf.image;
-import ij.plugin.DICOM;
+//import ij.plugin.DICOM;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,13 +25,13 @@ public class Dcm2jpeg {
      */
     public void create(String filePath,String sPath) {
         try {
-            DICOM dicom = new DICOM();
-            dicom.run(filePath);
-            BufferedImage bi = (BufferedImage) dicom.getImage();
-            int width = bi.getWidth();
-            int height = dicom.getHeight();
-            System.out.println("width: " + width + "\n" + "height: " + height);
-            ImageIO.write(bi, "jpg", new File(sPath));
+//            DICOM dicom = new DICOM();
+//            dicom.run(filePath);
+//            BufferedImage bi = (BufferedImage) dicom.getImage();
+//            int width = bi.getWidth();
+//            int height = dicom.getHeight();
+//            System.out.println("width: " + width + "\n" + "height: " + height);
+//            ImageIO.write(bi, "jpg", new File(sPath));
 
 
         } catch (Exception e) {

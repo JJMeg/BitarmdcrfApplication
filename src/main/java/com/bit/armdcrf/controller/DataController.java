@@ -18,7 +18,6 @@ import java.net.URI;
 import java.util.*;
 
 /**
- * @author Debbie Qiu
  * 本类中是进行数据操作的Controller
  */
 @RestController
@@ -31,6 +30,33 @@ public class DataController {
     @Autowired
     ImgDataHandler imgDataHandler;
 
+
+    /**
+     * 导入数据，
+     * 将uri路径下所有符合条件的Word文件进行索引，
+     * 新建索引文件或添加到原有索引文件。
+     * @param uri
+     * @return 返回带有处理信息的json数据
+     */
+
+    @RequestMapping(value="import",method = RequestMethod.POST)
+    public Map<String,String> importFile(@RequestParam("file.uri") String uri){
+
+        boolean flag =  wordDataHandler.add(uri);
+
+        Map<String,String> result = new HashMap<String, String>();
+        if(flag) {
+            result.put("result", "success");
+            result.put("mess", "导入成功");
+        }
+        else{
+            result.put("result", "fail");
+            result.put("mess", "导入失败，请联系管理员！");
+        }
+
+        return result;
+
+    }
 
 
     /**
