@@ -55,26 +55,46 @@ public class WebController {
 //                "    {'name':'用户管理','children':[" +
 //                "    {'id':'user-tree', 'name':'用户管理', 'target':'navtab', 'url':'html/form/user-tree.html'}" +
 //                "    ]}" +
-                "    {'name':'智能导入', 'children':[" +
-                "        {'id':'word-input', 'name':'数据导入', 'target':'navtab', 'url':'html/form/wordinput.html'}," +
-                "        {'id':'img-nput', 'name':'影像数据导入', 'target':'navtab', 'url':'html/form/imginput.html'}," +
+                "    {'name':'0智能导入', 'children':[" +
+                "        {'id':'word-input', 'name':'0数据导入', 'target':'navtab', 'url':'html/form/wordinput.html'}," +
+                "        {'id':'img-nput', 'name':'0影像数据导入', 'target':'navtab', 'url':'html/form/imginput.html'}," +
 //                "        {'id':'img-view', 'name':'文本数据详细', 'target':'navtab', 'url':'html/form/wordview.html'}," +
                 "    ]}," +
-                "    {'name':'数据中心', 'children':[" +
-                "        {'id':'wordsearch', 'name':'数据检索', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
-                "        {'id':'imgsearch', 'name':'数据下载', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
+                "    {'name':'0数据中心', 'children':[" +
+                "        {'id':'wordsearch', 'name':'0数据检索', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
+                "        {'id':'imgsearch', 'name':'0数据下载', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
                 "    ]}" +
-                "    {'name':'配置中心', 'children':[" +
-                "        {'id':'wordsearch', 'name':'站点配置', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
-                "        {'id':'imgsearch', 'name':'用户配置', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
+                "    {'name':'0配置中心', 'children':[" +
+                "        {'id':'wordsearch', 'name':'0站点配置', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
+                "        {'id':'imgsearch', 'name':'0用户配置', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
                 "    ]}" +
-                "    {'name':'分析统计', 'children':[" +
-                "        {'id':'wordsearch', 'name':'数据总览', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
-                "        {'id':'imgsearch', 'name':'数据明细', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
+                "    {'name':'0分析统计', 'children':[" +
+                "        {'id':'wordsearch', 'name':'0数据总览', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
+                "        {'id':'imgsearch', 'name':'0数据明细', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
                 "    ]}" +
 //                "    {'name':'日志管理','children':[" +
 //                "    {'id':'user-tree', 'name':'日志管理', 'target':'navtab', 'url':'html/form/user-tree.html'}" +
 //                "    ]}" +
+
+
+                "    {'name':'1智能导入', 'children':[" +
+                "        {'id':'data-input', 'name':'1数据导入', 'target':'navtab', 'url':'html/form/import/data-import.html'}," +
+                "        {'id':'img-nput', 'name':'1影像数据导入', 'target':'navtab', 'url':'html/form/imginput.html'}," +
+                "    ]}," +
+                "    {'name':'1数据中心', 'children':[" +
+                "        {'id':'wordsearch', 'name':'1数据检索', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
+                "        {'id':'imgsearch', 'name':'1数据下载', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
+                "    ]}" +
+                "    {'name':'1配置中心', 'children':[" +
+                "        {'id':'serversetting', 'name':'1文件站点中心', 'target':'navtab', 'url':'html/form/setting/fileserver-search.html'}" +
+                "        {'id':'usersetting', 'name':'1用户中心', 'target':'navtab', 'url':'html/form/setting/user-search.html'}" +
+                "    ]}" +
+                "    {'name':'1分析统计', 'children':[" +
+                "        {'id':'wordsearch', 'name':'1数据总览', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
+                "        {'id':'imgsearch', 'name':'1数据明细', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
+                "    ]}" +
+
+
                 "]");
 
         return jsonObject;

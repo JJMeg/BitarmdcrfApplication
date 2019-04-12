@@ -32,4 +32,20 @@
     ip = #{ip}
   </select>
 
+    <insert id="addServer" parameterType="com.bit.armdcrf.entity.Fileserver">
+        INSERT INTO
+        fileServer
+        (ip,port,name)
+        VALUES
+        (#{ip} ,#{port} ,#{name} )
+
+    </insert>
+    <select id="getByNameIp" parameterType="string" resultType="com.bit.armdcrf.entity.Fileserver">
+    SELECT * FROM
+    fileServer
+    WHERE
+    ip = #{ip}
+    and
+    name = #{name}
+    </select>
 </mapper>

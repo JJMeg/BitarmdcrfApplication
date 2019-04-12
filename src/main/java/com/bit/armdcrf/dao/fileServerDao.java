@@ -11,4 +11,8 @@ public interface fileServerDao {
 
   public Fileserver getByIp(String ip);
 
+  public int addServer(Fileserver fileserver);
+
+  public Fileserver getByNameIp(String name,String ip);
+
 }

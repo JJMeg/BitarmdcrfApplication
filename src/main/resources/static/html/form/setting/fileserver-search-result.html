@@ -1,0 +1,113 @@
+<script type="text/javascript">
+
+    var serverID;
+
+
+    function viewUser() {
+
+        BJUI.navtab({
+            id: 'viewserver',
+            url: 'html/form/viewserver.html?serverID='+serverID,
+            data:uri,
+            title: '病历数据查看'
+        })
+
+
+    }
+    $(function() {
+
+
+
+
+        var data = $('#bjui-navtab .navtab-tab > li.active').data('options');
+
+        var value;
+        $.each(data,function(key,values){
+            if(key == 'data')
+                value = values;
+        });
+
+
+
+
+        $('#j_datagrid').datagrid({
+            height: '100%',
+            gridTitle : '文件服务器检索结果',
+            showToolbar: true,
+            toolbarItem: 'export,exportf',
+            showCheckboxcol: true,
+            local: 'local',
+            dataUrl: 'server/search_server?'+value,
+            showToolbar: true,
+            //toolbarCustom: globallistbar,
+            toolbarItem: 'export,exportf',
+
+            // exportOption: {type:'file', options:{url:'#', loadingmask:true}},
+            paging: {pageSize:50, pageCurrent:10},
+            linenumberAll: true,
+            tableWidth:'100%',
+            noremove: false,
+
+            columns: [
+                {
+                    name: 'serverID',
+                    label: '服务器编号',
+                    align: 'center',
+                    width: 70
+                },
+                {
+                    name: 'serverIP',
+                    label: '服务器地址',
+                    align: 'center',
+                    width: 70
+                },
+                {
+                    name: 'serverport',
+                    label: '端口号',
+                    align: 'center',
+                    width: 70
+                },
+                {
+                    name: 'servername',
+                    label: '服务器命名',
+                    align: 'center',
+                    width: 70
+                },
+                {
+                    name: 'uri',
+                    label: '修改配置',
+                    align: 'center',
+                    render: function (value, data) {uri = data.uri; return '<button type="button" class="btn-blue"  onclick="viewUser()">查看</button>' },
+                    width: 70
+                },
+
+            ],
+
+        })
+
+    });
+
+
+</script>
+<div class="bjui-pageHeader" style="background-color:#fff; border-bottom:none;">
+    <form data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+        <fieldset>
+            <legend style="font-weight:normal;">用户名搜索：</legend>
+            <div style="margin:0; padding:1px 5px 5px;">
+                <!-- <span>病人编号：</span> -->
+                <input type="text" name="obj.code" class="form-control" size="60">
+
+                <label id="test"></label>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn-green" data-icon="search" >搜索</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="bjui-pageContent">
+    <table id="j_datagrid" class="table table-bordered">
+    </table>
+</div>
+

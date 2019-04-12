@@ -5,7 +5,8 @@ import com.bit.armdcrf.entity.Fileserver;
 import com.bit.armdcrf.service.fileServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
+import java.util.regex.Pattern;
 
 @Component
 public class fileServerServiceImpl implements fileServerService {
@@ -26,5 +27,32 @@ public class fileServerServiceImpl implements fileServerService {
   @Override
   public Fileserver getByIp(String ip) {
     return fileServerDao.getByIp(ip);
+  }
+
+
+
+  @Override
+  public boolean judgeIP(String ip) {
+    String regex = "[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}";
+    Pattern pattern = Pattern.compile(regex);
+    if (pattern.matcher(ip).matches()) {
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public boolean addFileServer(Fileserver fileserver) {
+    if (fileServerDao.addServer(fileserver) > 0){
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public Fileserver getByNameIp(String name, String ip) {
+    Fileserver fileserverInDB = fileServerDao.getByNameIp(name,ip);
+    System.out.println(fileserverInDB.getName() + fileserverInDB.getIp());
+    return fileserverInDB;
   }
 }

@@ -1,0 +1,49 @@
+
+<div class="bjui-pageHeader" style="background-color:#fff; border-bottom:none;">
+    <form data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+        <fieldset>
+            <legend style="font-weight:normal;">用户搜索：</legend>
+            <div style="margin:0; padding:1px 5px 5px;">
+                <!-- <span>病人编号：</span> -->
+                <input type="text" name="obj.code" id="code" class="form-control" list="list" size="60" style="width: 600px;"
+                       placeholder="请输入用户名"
+                       value="">
+
+
+
+                <div class="btn-group">
+                    <button type="button" class="btn-green" data-icon="search" onclick="search()">搜索</button>
+                    <!--<button type="button" class="btn-green" data-icon="search" data-toggle="dialog"-->
+                            <!--data-options="{id:'advance_search', url:'../../html/form/advance-search.html',-->
+                            <!--width:1200, height:500, mask:true,title:'高级检索'}">添加</button>-->
+                </div>
+
+
+
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+
+<script type="text/javascript" >
+    function search() {
+
+        BJUI.navtab({
+            id:  'usersearch',
+            url: 'html/form/imgSearchResult.html',
+            data:$('#img_info_import').serialize(),
+            title: '影像数据检索结果'
+        })
+
+        $("#closewin").click();
+
+
+    }
+</script>
+
+<datalist id="list">
+
+</datalist>
+

@@ -1,0 +1,49 @@
+
+<div class="bjui-pageHeader" style="background-color:#fff; border-bottom:none;">
+    <form data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+        <fieldset>
+            <legend style="font-weight:normal;">文件服务器搜索：</legend>
+            <div style="margin:0; padding:1px 5px 5px;">
+                <!-- <span>病人编号：</span> -->
+                <input type="text" name="obj.code" id="code" class="form-control" list="list" size="60" style="width: 600px;"
+                       placeholder="请输入服务器名称或IP地址"
+                       value="">
+
+
+
+                <div class="btn-group">
+                    <button type="button" class="btn-green" data-icon="search" onclick="search()">搜索</button>
+                    <button type="button" class="btn-green" data-icon="save" data-toggle="dialog"
+                    data-options="{id:'fileserver-add', url:'../../html/form/setting/fileserver-add.html',
+                    width:1200, height:500, mask:true,title:'添加服务器'}">添加服务器</button>
+                </div>
+
+
+
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+
+<script type="text/javascript" >
+    function search() {
+
+        BJUI.navtab({
+            id:  'serversearch',
+            url: 'html/form/serverSearchResult.html',
+            data:$('#img_info_import').serialize(),
+            title: '文件服务器检索结果'
+        })
+
+        $("#closewin").click();
+
+
+    }
+</script>
+
+<datalist id="list">
+
+</datalist>
+
