@@ -9,4 +9,7 @@ public interface FTPService {
   void downloadFileFromFTP(String ftpRelativePath, String copytoPath) throws FTPErrors;
   void disconnectFTP() throws FTPErrors;
 
+  void uploadDirToFTP(File dir, String ftpHostDir) throws FTPErrors;
+
+
 }
