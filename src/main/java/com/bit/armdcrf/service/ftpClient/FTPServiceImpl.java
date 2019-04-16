@@ -173,9 +173,10 @@ public class FTPServiceImpl implements FTPService {
           if (toInput.isDirectory()) {
             System.out.println("-----------------" + "subDir upload to " + ftpHostDir + serverFilename);
             uploadDirToFTP(toInput, ftpHostDir + serverFilename);
+            continue;
           }
           InputStream input = new FileInputStream(toInput);
-          System.out.println(dir.getPath() + "/" + serverFilename);
+          System.out.println("single file upload" + dir.getPath() + "/" + serverFilename);
           this.ftpconnection.storeFile(ftpHostDir + serverFilename, input);
         }
       }

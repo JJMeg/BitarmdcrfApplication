@@ -37,7 +37,7 @@ public class FTPController {
 
       ftpService.connectToFTP("10.55.223.210","anonymous","a");
 
-      ftpService.uploadDirToFTP(new File("/Users/jjmeg/Documents/毕设/testData"),"/testData/testData");
+      ftpService.uploadDirToFTP(new File("/Users/jjmeg/Documents/毕设/testData"),"/eee/fff");
 
     } catch (FTPErrors ftpErrors) {
       System.out.println(ftpErrors.getMessage());
