@@ -1,0 +1,48 @@
+<form action="" id="server" data-toggle="validate" data-alertmsg="false"
+      style=" padding:10px; margin: 10px; border:1px #999 solid; border-radius:5px;">
+    <fieldset>
+        <legend style="font-weight:normal;">归档设置：</legend>
+        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <div class="bjui-row col-0">
+
+            <label class="row-label">数据归档路径:</label>
+            <div class="row-input required">
+                <input type="text" name="dir.uri" data-rule="required" id="server-dir" value="file:/">
+            </div>
+
+            <label class="row-label">选择文件服务器:</label>
+            <div class="row-input  required">
+                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="selectserver"
+                        multiple="">
+                    <option value="0">术前</option>
+                    <option value="1">术中</option>
+                    <option value="2">术后即时</option>
+                    <option value="3">术后7天内</option>
+                    <option value="4">术后一个月</option>
+                    <option value="5">术后三个月</option>
+                    <option value="6">术后六个月</option>
+                    <option value="7">术后九个月</option>
+                    <option value="8">术后十二个月</option>
+                    <option value="9">术后十八个月</option>
+                    <option value="11">术后二十四个月</option>
+                    <option value="12">术后三十个月</option>
+                    <option value="13">术后三十六个月</option>
+                </select>
+            </div>
+
+            <hr style="margin:5px 0 15px;">
+            <div class="text-center">
+                <button type="button" class="btn-default" data-icon="save" onclick="dir_submit()">确定</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
+<div class="bjui-pageFooter">
+    <ul>
+        <li>
+            <button type="button" class="btn-close" data-icon="close">关闭</button>
+        </li>
+    </ul>
+</div>

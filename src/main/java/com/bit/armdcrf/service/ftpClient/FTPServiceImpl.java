@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -191,6 +192,23 @@ public class FTPServiceImpl implements FTPService {
     }
   }
 
+  @Override
+  public void downloadDirFromFTP(String serverDir, String copytoPath) throws FTPErrors {
+    try {
+      ArrayList<String> fileList = getRemoteDirList(serverDir);
+      for (String file :fileList){
+        System.out.println("准备下载： " + file);
+        downloadFileFromFTP(serverDir + file, copytoPath);
+        System.out.println("下载： " + file + "完毕");
+      }
+    }catch (IOException e){
+      e.printStackTrace();
+      ErrorMessage errorMessage = new ErrorMessage(-5, "Get the remote directory filename list error.");
+      logger.info(errorMessage.toString());
+      throw new FTPErrors(errorMessage);
+    }
+  }
+
   private boolean checkDirExists(String ftpHostDir) throws IOException {
     try {
       //不存在此目录
@@ -283,17 +301,28 @@ public class FTPServiceImpl implements FTPService {
     return flag;
   }
 
-  private static class FilterFilesVisitor extends SimpleFileVisitor<Path> {
-    private List<String> result = new LinkedList<String>();
+//  private static class FilterFilesVisitor extends SimpleFileVisitor<Path> {
+////    private List<String> result = new LinkedList<String>();
+////
+////    public FilterFilesVisitor(List<String> result) {
+////      this.result = result;
+////    }
+////
+////    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+////      result.add(file.toString());
+////      return FileVisitResult.CONTINUE;
+////    }
+////  }
 
-    public FilterFilesVisitor(List<String> result) {
-      this.result = result;
+  private ArrayList<String> getRemoteDirList(String serverDir) throws IOException{
+    ArrayList<String> result = new ArrayList<>();
+    FTPFile[] ftpFileArr = this.ftpconnection.listFiles(serverDir);
+    if (ftpFileArr.length>0){
+      for (FTPFile file : ftpFileArr){
+        result.add(file.getName());
+      }
     }
-
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-      result.add(file.toString());
-      return FileVisitResult.CONTINUE;
-    }
+    return result;
   }
 
 }

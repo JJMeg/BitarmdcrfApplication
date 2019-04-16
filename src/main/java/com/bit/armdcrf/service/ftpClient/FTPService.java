@@ -11,5 +11,6 @@ public interface FTPService {
 
   void uploadDirToFTP(File dir, String ftpHostDir) throws FTPErrors;
 
+  void downloadDirFromFTP(String serverDir,String copytoPath) throws FTPErrors;
 
 }

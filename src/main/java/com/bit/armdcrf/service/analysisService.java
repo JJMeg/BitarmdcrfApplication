@@ -6,5 +6,7 @@ import java.util.Map;
 public interface analysisService {
   public File getYamlFile(String dirPath);
 
-  public Map<String, String> analyseYaml(File yamlFile);
+  public Map<Object, Object> analyseYaml(File yamlFile);
+
+  public Map<String, Object> analyseJsonMap(Map<Object, Object> jsonMap,Map<String, Object> result);
 }

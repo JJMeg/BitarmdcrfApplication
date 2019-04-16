@@ -13,12 +13,58 @@
     </div>
 </form>
 
+<form action="" id="dir_import" data-toggle="validate" data-alertmsg="false"
+      style=" padding:10px; margin: 10px; border:1px #999 solid; border-radius:5px;">
+    <fieldset>
+        <legend style="font-weight:normal;">跨域归档：</legend>
+        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <div class="bjui-row col-2">
+
+            <label class="row-label">数据URI:</label>
+            <div class="row-input required">
+                <input type="text" name="dir.uri" data-rule="required" id="dir_import_uri" value="file:/">
+            </div>
+
+            <label class="row-label">归档终点:</label>
+            <div class="row-input required">
+                <input type="text" name="dir.uri" data-rule="required" id="dir_import_uri" value="file:/">
+            </div>
+
+            <label class="row-label">选择文件服务器:</label>
+            <div class="row-input  ">
+                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="studystage" multiple="">
+                    <option value="BRAINLESION">脑肿瘤</option>
+                    <option value="LIVERLESION">肝肿瘤</option>
+                    <option value="ARTERYLESION">主动脉瘤</option>
+                    <option value="EYELESION">眼部肿瘤</option>
+                    <option value="STENOSIS">血管狭窄</option>
+                    <option value="AORTICDISSECTION">主动脉夹层</option>
+                    <option value="CIRRHOSIS">肝硬化</option>
+                    <option value="CALCIFICATION">钙化</option>
+                    <option value="NORMAL">正常</option>
+                </select>
+            </div>
+
+            <label class="row-label"></label>
+            <div class="row-input">
+                <button type="button" class="btn-default" data-icon="save" onclick="dir_submit()">确认</button>
+            </div>
+            <!--<hr style="margin:5px 0 15px;">-->
+            <!--<div class="text-center">-->
+            <!--<button type="button" class="btn-default" data-icon="save" onclick="dir_submit()">确定</button>-->
+            <!--</div>-->
+        </div>
+    </fieldset>
+</form>
+
 
 <div class="bjui-pageFooter">
     <ul>
         <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
     </ul>
 </div>
+
+
 
 
 <script type="text/javascript">
