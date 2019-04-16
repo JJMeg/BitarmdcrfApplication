@@ -44,6 +44,19 @@ public class FTPController {
     }
   }
 
+  @RequestMapping( value = "/test/dir/download", method = RequestMethod.GET)
+  public void downloadDirExample(){
+    try {
+
+      ftpService.connectToFTP("10.55.223.210","anonymous","a");
+
+      ftpService.downloadDirFromFTP("/eee/fff/","/Users/jjmeg/Downloads/result");
+
+    } catch (FTPErrors ftpErrors) {
+      System.out.println(ftpErrors.getMessage());
+    }
+  }
+
   @RequestMapping(value="import",method = RequestMethod.POST)
   public Map<String,String> importFile(@RequestParam("file.uri") String uri, @RequestParam("file.toDir") String serverDir){
 

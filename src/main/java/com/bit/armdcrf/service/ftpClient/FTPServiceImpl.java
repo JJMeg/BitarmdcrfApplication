@@ -95,7 +95,7 @@ public class FTPServiceImpl implements FTPService {
    */
   @Override
   public void uploadFileToFTP(File file, String ftpHostDir, String serverFilename) throws FTPErrors {
-    if(!ftpHostDir.endsWith("/")){
+    if (!ftpHostDir.endsWith("/")) {
       ftpHostDir = ftpHostDir + "/";
     }
     try {
@@ -160,7 +160,7 @@ public class FTPServiceImpl implements FTPService {
   @Override
   public void uploadDirToFTP(File dir, String ftpHostDir) throws FTPErrors {
     try {
-      if(!ftpHostDir.endsWith("/")){
+      if (!ftpHostDir.endsWith("/")) {
         ftpHostDir = ftpHostDir + "/";
       }
       System.out.println("本次上传到服务器文件夹： " + ftpHostDir);
@@ -195,14 +195,30 @@ public class FTPServiceImpl implements FTPService {
 
   @Override
   public void downloadDirFromFTP(String serverDir, String copytoPath) throws FTPErrors {
+    if (!copytoPath.endsWith("/")) {
+      copytoPath = copytoPath + "/";
+    }
+    if (!serverDir.endsWith("/")) {
+      serverDir = serverDir + "/";
+    }
+    File copyToDir = new File(copytoPath);
+    if (!copyToDir.exists()){
+      copyToDir.mkdirs();
+    }
     try {
-      ArrayList<String> fileList = getRemoteDirList(serverDir);
-      for (String file :fileList){
+      FTPFile[] fileList = getRemoteDirList(serverDir);
+      for (FTPFile file : fileList) {
         System.out.println("准备下载： " + file);
-        downloadFileFromFTP(serverDir + file, copytoPath);
-        System.out.println("下载： " + file + "完毕");
+        if (file.isDirectory()) {
+//          File local = new File(copytoPath + file.getName());
+//          local.mkdirs();
+          System.out.println("下载子文件夹： " + serverDir + file.getName() + " to " + copytoPath + file.getName());
+          downloadDirFromFTP(serverDir + file.getName(), copytoPath + file.getName());
+          continue;
+        }
+        downloadFileFromFTP(serverDir + file.getName(), copytoPath + file.getName());
       }
-    }catch (IOException e){
+    } catch (IOException e) {
       e.printStackTrace();
       ErrorMessage errorMessage = new ErrorMessage(-5, "Get the remote directory filename list error.");
       logger.info(errorMessage.toString());
@@ -315,15 +331,9 @@ public class FTPServiceImpl implements FTPService {
 ////    }
 ////  }
 
-  private ArrayList<String> getRemoteDirList(String serverDir) throws IOException{
-    ArrayList<String> result = new ArrayList<>();
+  private FTPFile[] getRemoteDirList(String serverDir) throws IOException {
     FTPFile[] ftpFileArr = this.ftpconnection.listFiles(serverDir);
-    if (ftpFileArr.length>0){
-      for (FTPFile file : ftpFileArr){
-        result.add(file.getName());
-      }
-    }
-    return result;
+    return ftpFileArr;
   }
 
 }
