@@ -1,0 +1,127 @@
+<script type="text/javascript">
+
+    var uris;
+    var video;
+    function viewImg(uri,datatype) {
+
+        // alert(uri+":"+datatype);
+
+
+        if(datatype == "img"){
+
+            BJUI.ajax('doajax', {
+                url: '/data/view_img',
+                data:{"uris":uri},
+                loadingmask: true,
+                okCallback: function(json) {
+
+                    uris = json.toString();
+                    BJUI.dialog({
+                        id:'imgShow',
+                        url:'html/form/imgs.html',
+                        height: 300,
+                        width:300,
+                        title:'影像展示'
+                    })
+
+                }
+            })
+        }
+        else if(datatype == "video"){
+            BJUI.ajax('doajax', {
+                url: '/data/view_video',
+                data:{"uris":uri},
+                loadingmask: true,
+                okCallback: function(json) {
+                    video = json.uri;
+
+                    BJUI.dialog({
+                        id:'videoShow',
+                        url:'html/form/video.html',
+                        height: 700,
+                        width:1000,
+                        title:'影像展示'
+                    })
+                }
+            })
+        }
+
+
+
+
+
+    }
+
+
+
+    $(function() {
+
+        var data = $('#bjui-navtab .navtab-tab > li.active').data('options');
+        var value;
+        $.each(data,function(key,values){
+            if(key == 'data')
+                value = values;
+        });
+
+        $('#j_datagrid').datagrid({
+            height: '100%',
+            gridTitle : '检索结果',
+            showToolbar: true,
+            toolbarItem: 'export,exportf',
+            showCheckboxcol: true,
+            local: 'local',
+            dataUrl: 'data/search_img_advanced?'+value,
+            exportOption: {type:'file', options:{url:'#', loadingmask:true}},
+            columns: [
+                {
+                    name: 'serverId',
+                    label: '服务器编号',
+                    align: 'center',
+                    width: 70
+                },
+                {
+                    name: 'serverName',
+                    label: '服务器名称',
+                    align: 'center',
+                    width: 70
+                },
+                {
+                    name: 'serverIp',
+                    label: 'IP地址',
+                    align: 'center',
+                    width: 70
+                },
+                {
+                    name: 'serverPort',
+                    label: '端口号',
+                    align: 'center',
+                    width: 70
+                },
+                {
+                    name: 'uri',
+                    label: '操作',
+                    align: 'center',
+                    render: function (value, data) {uri = data.uris;datatype = data.datatype; return '<button type="button" class="btn-blue"  onclick="viewImg(\''+uri+'\''+','+'\''+datatype+'\')">查看</button>' },
+                    width: 70
+                },
+
+
+
+            ],
+            editUrl: 'json/ajaxDone.json',
+            paging: {pageSize:50, pageCurrent:10},
+            linenumberAll: true,
+            tableWidth:'100%',
+            noremove: false
+        })
+
+    });
+
+
+</script>
+
+<div class="bjui-pageContent">
+    <table id="j_datagrid" class="table table-bordered">
+    </table>
+</div>
+

@@ -2,11 +2,15 @@ package com.bit.armdcrf.service.Impl;
 
 import com.bit.armdcrf.service.analysisService;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -17,18 +21,25 @@ public class analysisServiceImpl implements analysisService {
   private static Logger logger = Logger.getLogger(analysisServiceImpl.class.getName());
 
   @Override
-  public File getYamlFile(String dirPath) {
-    String filePrefix = ".yaml";
-    File dirFile = new File(dirPath);
-    if (!dirFile.exists() || !dirFile.isDirectory()) {
-      return null;
-    }
-    for (File f : dirFile.listFiles()) {
-      System.out.println(f.getName());
-      if (f.getName().contains(filePrefix)) {
-        logger.info("get yaml file: "+ f.getName());
-        return f;
+  public File getYamlFile(String dirPath) throws URISyntaxException {
+    try {
+      URI url = new URI(dirPath);
+      System.out.println(url.getSchemeSpecificPart());
+
+      String filePrefix = ".yaml";
+      File dirFile = new File(url);
+      if (!dirFile.exists() || !dirFile.isDirectory()) {
+        return null;
       }
+      for (File f : dirFile.listFiles()) {
+        System.out.println(f.getName());
+        if (f.getName().contains(filePrefix)) {
+          logger.info("get yaml file: " + f.getName());
+          return f;
+        }
+      }
+    } catch (URISyntaxException e) {
+      e.printStackTrace();
     }
     return null;
   }
@@ -47,46 +58,46 @@ public class analysisServiceImpl implements analysisService {
   }
 
   @Override
-  public Map<String, Object> analyseJsonMap(Map<Object, Object> jsonMap,Map<String, Object> result) {
-    if(jsonMap == null){
+  public Map<String, Object> analyseJsonMap(Map<Object, Object> jsonMap, Map<String, Object> result) {
+    if (jsonMap == null) {
       return result;
     }
-    for (Object key : jsonMap.keySet()){
-      if (jsonMap.get(key).getClass() == String.class){
+    for (Object key : jsonMap.keySet()) {
+      if (jsonMap.get(key).getClass() == String.class) {
         String k = key.toString().trim();
-        if (k.compareTo("surProcedure")==0){
-          result.put("surProcedure",jsonMap.get(key).toString());
-        }else if (k.compareTo("imageSite")==0){
-          result.put("imageSite",jsonMap.get(key).toString());
-        }else if (k.compareTo("lesionType")==0){
-          result.put("lesionType",jsonMap.get(key).toString());
-        }else if (k.compareTo("imageType")==0){
-          result.put("imageType",jsonMap.get(key).toString());
-        }else if (k.compareTo("source")==0){
-          result.put("source",jsonMap.get(key).toString());
-        }else if (k.compareTo("stage")==0){
-          result.put("stage",jsonMap.get(key).toString());
-        }else if (k.compareTo("goldStandard")==0){
-          if (jsonMap.get(key).toString().compareTo("YES")==0) {
+        if (k.compareTo("surProcedure") == 0) {
+          result.put("surProcedure", jsonMap.get(key).toString());
+        } else if (k.compareTo("imageSite") == 0) {
+          result.put("imageSite", jsonMap.get(key).toString());
+        } else if (k.compareTo("lesionType") == 0) {
+          result.put("lesionType", jsonMap.get(key).toString());
+        } else if (k.compareTo("imageType") == 0) {
+          result.put("imageType", jsonMap.get(key).toString());
+        } else if (k.compareTo("source") == 0) {
+          result.put("source", jsonMap.get(key).toString());
+        } else if (k.compareTo("stage") == 0) {
+          result.put("stage", jsonMap.get(key).toString());
+        } else if (k.compareTo("goldStandard") == 0) {
+          if (jsonMap.get(key).toString().compareTo("YES") == 0) {
             result.put("goldStandard", true);
-          }else if (jsonMap.get(key).toString().compareTo("NO")==0) {
+          } else if (jsonMap.get(key).toString().compareTo("NO") == 0) {
             result.put("goldStandard", false);
           }
-        }else if (k.compareTo("segment")==0){
-          result.put("segment",jsonMap.get(key).toString());
-        }else if (k.compareTo("registration")==0){
-          result.put("registration",jsonMap.get(key).toString());
-        }else if (k.compareTo("reconstruct")==0){
-          result.put("reconstruct",jsonMap.get(key).toString());
-        }else if (k.compareTo("VR")==0){
-          result.put("VR",true);
-        }else if (k.compareTo("restoration")==0){
-          result.put("restoration",true);
-        }else if (k.compareTo("feature")==0){
-          result.put("feature",true);
+        } else if (k.compareTo("segment") == 0) {
+          result.put("segment", jsonMap.get(key).toString());
+        } else if (k.compareTo("registration") == 0) {
+          result.put("registration", jsonMap.get(key).toString());
+        } else if (k.compareTo("reconstruct") == 0) {
+          result.put("reconstruct", jsonMap.get(key).toString());
+        } else if (k.compareTo("VR") == 0) {
+          result.put("VR", true);
+        } else if (k.compareTo("restoration") == 0) {
+          result.put("restoration", true);
+        } else if (k.compareTo("feature") == 0) {
+          result.put("feature", true);
         }
-      }else{
-        analyseJsonMap((Map<Object, Object>)jsonMap.get(key),result);
+      } else {
+        analyseJsonMap((Map<Object, Object>) jsonMap.get(key), result);
       }
     }
     return result;

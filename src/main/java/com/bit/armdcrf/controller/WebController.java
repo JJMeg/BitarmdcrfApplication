@@ -78,11 +78,11 @@ public class WebController {
 
 
                 "    {'name':'1智能导入', 'children':[" +
-                "        {'id':'data-input', 'name':'1数据导入', 'target':'navtab', 'url':'html/form/import/data-import.html'}," +
+                "        {'id':'data-input', 'name':'1数据导入', 'target':'navtab', 'url':'html/form/import/dir-import.html'}," +
                 "        {'id':'img-nput', 'name':'1影像数据导入', 'target':'navtab', 'url':'html/form/imginput.html'}," +
                 "    ]}," +
                 "    {'name':'1数据中心', 'children':[" +
-                "        {'id':'wordsearch', 'name':'1数据检索', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
+                "        {'id':'wordsearch', 'name':'1数据检索', 'target':'navtab', 'url':'html/form/search/advanced-search-img.html'}" +
                 "        {'id':'imgsearch', 'name':'1数据下载', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
                 "    ]}" +
                 "    {'name':'1配置中心', 'children':[" +

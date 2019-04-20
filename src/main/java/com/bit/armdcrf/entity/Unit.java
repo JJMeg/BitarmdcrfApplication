@@ -1,8 +1,6 @@
 package com.bit.armdcrf.entity;
 
-/**
- * @author Debbie Qiu
- */
+
 
 public class Unit {
     private String name;

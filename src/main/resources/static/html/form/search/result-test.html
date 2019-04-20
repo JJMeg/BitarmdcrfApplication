@@ -1,0 +1,120 @@
+<script type="text/javascript" src="B-JUI/js/jquery.js"></script>
+<script type="text/javascript" src="B-JUI/js/common.js"></script>
+<script type="text/javascript" src="B-JUI/js/datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="B-JUI/js/datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<script type="text/javascript" src="B-JUI/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="B-JUI/js/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="B-JUI/js/echarts-all.js"></script>
+<script type="text/javascript">
+
+    $('select').select2();
+    //chart1
+    var option1 = {
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['软件','数据','人员','组织','服务','硬件']
+        },
+        calculable : true,
+        series : [
+            {
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'软件'},
+                    {value:310, name:'数据'},
+                    {value:234, name:'人员'},
+                    {value:135, name:'组织'},
+                    {value:1548, name:'服务'},
+                    {value:48, name:'硬件'}
+                ]
+            }
+        ]
+    };
+
+    var myChart1 = echarts.init(document.getElementById('chart1'));
+    myChart1.setOption(option1);
+
+    //chart2
+    var option2 = {
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['一级','二级','三级','四级','五级','未分级']
+        },
+        calculable : true,
+        series : [
+            {
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'二级'},
+                    {value:310, name:'一级'},
+                    {value:234, name:'四级'},
+                    {value:135, name:'五级'},
+                    {value:1548, name:'三级'},
+                    {value:48, name:'未分级'}
+                ]
+            }
+        ]
+    };
+
+    var myChart2 = echarts.init(document.getElementById('chart2'));
+    myChart2.setOption(option2);
+
+    //chart3
+    var option3 = {
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['']
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                data : ['业务统计','操作系统','数据库','办公软件','中间件','计算机','网络设备','存储设备','安全设备','保障设备','业务系统','安全组织']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'',
+                type:'bar',
+                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+
+    var myChart3 = echarts.init(document.getElementById('chart3'));
+    myChart3.setOption(option3);
+
+
+
+</script>

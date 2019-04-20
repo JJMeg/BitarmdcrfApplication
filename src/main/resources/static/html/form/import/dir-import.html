@@ -12,7 +12,7 @@
 
             <label class="row-label"></label>
             <div class="row-input">
-                <button type="button" class="btn-default" data-icon="save" onclick="dir_submit()">获取详细说明</button>
+                <button type="button" class="btn-default" data-icon="save" onclick="anaylse_dir()">获取详细说明</button>
             </div>
             <!--<hr style="margin:5px 0 15px;">-->
             <!--<div class="text-center">-->
@@ -29,17 +29,18 @@
         <div class="bjui-row col-2">
             <label class="row-label">病人姓名:</label>
             <div class="row-input ">
-                <input type="text" name="patientname" id="img_info_name">
+                <input type="text" name="patientName" id="img_info_name">
             </div>
 
             <label class="row-label">病人编号:</label>
             <div class="row-input  ">
-                <input type="text" name="patientid" id="img_info_patient">
+                <input type="text" name="patientId" id="img_info_patient">
             </div>
 
             <label class="row-label">手术术式:</label>
             <div class="row-input">
-                <select data-toggle="selectpicker" data-width="200" name="studystage" multiple="">
+                <select data-toggle="selectpicker" data-width="200" name="surProcedure" id="surProcedure" multiple="">
+                    <option value="null"></option>
                     <option value="HEARTBYPASS">心脏搭桥(植入支架)</option>
                     <option value="ENDOSCOPE">内景引导手术导航</option>
                     <option value="ARTERYFIX">主动脉修复TEVAR(植入支架)</option>
@@ -50,7 +51,8 @@
 
             <label class="row-label">成像部位:</label>
             <div class="row-input  required">
-                <select data-toggle="selectpicker" data-width="200" name="studystage" multiple="">
+                <select data-toggle="selectpicker" data-width="200" name="imageSite" multiple="">
+                    <option value="null"></option>
                     <option value="CORONARY">冠脉</option>
                     <option value="AORTA">主动脉</option>
                     <option value="HEPATICVESSEL">肝血管</option>
@@ -70,7 +72,8 @@
 
             <label class="row-label">病变类型:</label>
             <div class="row-input  ">
-                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="studystage" multiple="">
+                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="lesionType">
+                    <option value="null"></option>
                     <option value="BRAINLESION">脑肿瘤</option>
                     <option value="LIVERLESION">肝肿瘤</option>
                     <option value="ARTERYLESION">主动脉瘤</option>
@@ -85,7 +88,8 @@
 
             <label class="row-label">成像类型:</label>
             <div class="row-input  ">
-                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="studystage" multiple="">
+                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="imageType">
+                    <option value="null"></option>
                     <option value="CT">CT</option>
                     <option value="4DCT">4D-CT</option>
                     <option value="MR">MR</option>
@@ -102,7 +106,8 @@
 
             <label class="row-label">来源渠道:</label>
             <div class="row-input  required">
-                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="studystage" multiple="">
+                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="source">
+                    <option value="null"></option>
                     <option value="ANZHEN">安贞医院</option>
                     <option value="301DUAN">解放军总医院-段峰</option>
                     <option value="301LIANG">解放军总医院-梁萍</option>
@@ -116,7 +121,8 @@
 
             <label class="row-label">采集阶段:</label>
             <div class="row-input  ">
-                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="studystage" multiple="">
+                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="stage">
+                    <option value="null"></option>
                     <option value="PREOPERATIVE">术前</option>
                     <option value="INTRAOPERATIVE">术中</option>
                     <option value="POSTOPERATIVE">术后</option>
@@ -125,16 +131,16 @@
 
             <label class="row-label">是否有金标准:</label>
             <div class="row-input">
-                <input type="radio" name="patientsex" id="j_custom_male" data-toggle="icheck" value="YES"
+                <input type="radio" name="goldStandard" id="goldStandardYes" data-toggle="icheck" value="YES"
                        data-label="是">
-                <input type="radio" name="patientsex" id="j_custom_female" data-toggle="icheck" value="NO"
+                <input type="radio" name="goldStandard" id="goldStandardNO" data-toggle="icheck" value="NO"
                        data-label="否">
             </div>
 
-            <label class="row-label"></label>
-            <div class="row-input">
-                <button type="button" class="btn-default" data-icon="save" onclick="dir_submit()">确定</button>
-            </div>
+            <!--<label class="row-label"></label>-->
+            <!--<div class="row-input">-->
+                <!--<button type="button" class="btn-default" data-icon="save" onclick="dir_submit()">确定</button>-->
+            <!--</div>-->
 
         </div>
 
@@ -147,7 +153,8 @@
 
             <label class="row-label">分割:</label>
             <div class="row-input">
-                <select data-toggle="selectpicker" data-width="200" name="selectserver" multiple="">
+                <select data-toggle="selectpicker" data-width="200" name="segment">
+                    <option value="null"></option>
                     <option value="Optic nerve">视神经</option>
                     <option value="Aorta">主动脉</option>
                     <option value="CoronaryArtery">冠脉</option>
@@ -160,7 +167,8 @@
 
             <label class="row-label">配准:</label>
             <div class="row-input">
-                <select data-toggle="selectpicker" data-width="200" name="selectserver" multiple="">
+                <select data-toggle="selectpicker" data-width="200" name="registration">
+                    <option value="null"></option>
                     <option value="Brain">大脑</option>
                     <option value="Vessel">血管</option>
                     <option value="Liver">肝脏</option>
@@ -169,18 +177,19 @@
 
             <label class="row-label">重建:</label>
             <div class="row-input">
-                <select data-toggle="selectpicker" data-width="200" name="selectserver" multiple="">
+                <select data-toggle="selectpicker" data-width="200" name="reconstruct">
+                    <option value="null"></option>
                     <option value="Brain">血管</option>
                     <option value="Vessel">鼻腔</option>
                     <option value="Liver">超声体数据</option>
                 </select>
             </div>
             <div class="row-input">
-                <input type="radio" name="patientsex" id="j_custom_male" data-toggle="icheck" value="VR"
+                <input type="radio" name="VR" id="j_custom_male" data-toggle="icheck" value="VR"
                        data-label="增强现实混合渲染">
-                <input type="radio" name="patientsex" id="j_custom_female" data-toggle="icheck" value="restoration"
+                <input type="radio" name="restoration" id="j_custom_female" data-toggle="icheck" value="restoration"
                        data-label="图像复原">
-                <input type="radio" name="patientsex" id="j_custom_female" data-toggle="icheck" value="feature"
+                <input type="radio" name="feature" id="j_custom_female" data-toggle="icheck" value="feature"
                        data-label="特征匹配">
             </div>
 
@@ -193,6 +202,46 @@
     </div>
 </form>
 
+<form action="" id="server" data-toggle="validate" data-alertmsg="false"
+      style=" padding:10px; margin: 10px; border:1px #999 solid; border-radius:5px;">
+    <fieldset>
+        <legend style="font-weight:normal;">归档设置：</legend>
+        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <div class="bjui-row col-1">
+
+            <label class="row-label">数据归档路径:</label>
+            <div class="row-input required">
+                <input type="text" name="dir.uri" data-rule="required" id="server-dir" value="file:/">
+            </div>
+
+            <label class="row-label">选择文件服务器:</label>
+            <div class="row-input  required">
+                <select data-toggle="selectpicker" data-rule="required" data-width="200" name="selectserver"
+                        multiple="">
+                    <option value="0">术前</option>
+                    <option value="1">术中</option>
+                    <option value="2">术后即时</option>
+                    <option value="3">术后7天内</option>
+                    <option value="4">术后一个月</option>
+                    <option value="5">术后三个月</option>
+                    <option value="6">术后六个月</option>
+                    <option value="7">术后九个月</option>
+                    <option value="8">术后十二个月</option>
+                    <option value="9">术后十八个月</option>
+                    <option value="11">术后二十四个月</option>
+                    <option value="12">术后三十个月</option>
+                    <option value="13">术后三十六个月</option>
+                </select>
+            </div>
+
+            <hr style="margin:5px 0 15px;">
+            <div class="text-center">
+                <button type="button" class="btn-default" data-icon="save" onclick="dir_submit()">确定</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
 
 <script type="text/javascript">
     function dir_submit() {
@@ -202,6 +251,23 @@
             loadingmask: true,
             okCallback: function (json) {
                 BJUI.alertmsg('ok', json.mess);
+
+            }
+        })
+    }
+
+    function anaylse_dir() {
+        BJUI.ajax('doajax', {
+            url: '/import/analyse',
+            data: $('#dir_import').serialize(),
+            loadingmask: true,
+            okCallback: function (json) {
+                BJUI.alertmsg('ok', json.surProcedure);
+                //var anElement = $("#surProcedure");anElement.attr("anyAttribute","anyValue");
+                var vvvv = json.surProcedure;
+                $("#surProcedure").find("option[text=vvvv]").attr("selected",true);
+                $("#surProcedure").val(json.surProcedure);
+
             }
         })
     }

@@ -1,0 +1,158 @@
+<form action="" id="img_info_import" data-toggle="validate" data-alertmsg="false"
+      style=" padding:10px; margin: 10px; border:1px #999 solid; border-radius:5px;">
+    <div class="bjui-row col-2">
+
+        <label class="row-label">病人编号:</label>
+        <div class="row-input ">
+            <input type="text" name="patientId" id="img_info_patient">
+        </div>
+
+        <label class="row-label">病人姓名:</label>
+        <div class="row-input ">
+            <input type="text" name="patientName" id="img_info_name">
+        </div>
+
+        <label class="row-label">病变类型:</label>
+        <div class="row-input  ">
+            <select data-toggle="selectpicker"  data-width="200" name="lesionType" >
+                <option value="BRAINLESION">脑肿瘤</option>
+                <option value="LIVERLESION">肝肿瘤</option>
+                <option value="ARTERYLESION">主动脉瘤</option>
+                <option value="EYELESION">眼部肿瘤</option>
+                <option value="STENOSIS">血管狭窄</option>
+                <option value="AORTICDISSECTION">主动脉夹层</option>
+                <option value="CIRRHOSIS">肝硬化</option>
+                <option value="CALCIFICATION">钙化</option>
+                <option value="NORMAL">正常</option>
+            </select>
+        </div>
+
+        <label class="row-label">成像类型:</label>
+        <div class="row-input">
+            <select data-toggle="selectpicker" name="imageType" data-nextselect="study-type" >
+                <option value="CT">CT</option>
+                <option value="4DCT">4D-CT</option>
+                <option value="MR">MR</option>
+                <option value="XRAY">X-Ray</option>
+                <option value="US">US</option>
+                <option value="ENDOSCOPEIMA">内窥镜图像</option>
+                <option value="PET">PET</option>
+                <option value="fMRI">fMRI</option>
+                <option value="POINTCLOUD">点云</option>
+                <option value="ECG">心电信号</option>
+                <option value="PIC">照片</option>
+            </select>
+        </div>
+
+        <label class="row-label">来源渠道:</label>
+        <div class="row-input">
+            <select data-toggle="selectpicker"  data-width="200" name="source" >
+                <option value="ANZHEN">安贞医院</option>
+                <option value="301DUAN">解放军总医院-段峰</option>
+                <option value="301LIANG">解放军总医院-梁萍</option>
+                <option value="XIEHEHAN">协和医院</option>
+                <option value="BITCHEN">北理工陈端端</option>
+                <option value="XINANUNI">西南大学</option>
+                <option value="TONGREN">同仁医院</option>
+                <option value="PUBLIC">公开数据集</option>
+            </select>
+        </div>
+
+        <label class="row-label">是否有金标准:</label>
+        <div class="row-input">
+            <input type="radio" name="goldStandard" id="j_custom_male" data-toggle="icheck" value="1" data-label="有">
+            <input type="radio" name="goldStandard" id="j_custom_female" data-toggle="icheck" value="0" data-label="无">
+        </div>
+
+
+
+        <label class="row-label">收录日期:</label>
+        <div class="row-input">
+            <input type="text" style="width:150px" name="createTimeMin" value="" data-toggle="datepicker" size="small"
+                   placeholder="点击选择日期">
+            至
+            <input type="text" style="width:150px" name="createTimeMax" value="" data-toggle="datepicker" size="small"
+                   placeholder="点击选择日期">
+        </div>
+
+
+    </div>
+    <hr style="margin:5px 0 15px;">
+
+    <div class="bjui-row col-2">
+        <label class="row-label">图像分割:</label>
+        <div class="row-input  ">
+            <select data-toggle="selectpicker"  data-width="200" name="segment" multiple="">
+                <option value="Optic nerve">视神经</option>
+                <option value="Aorta">主动脉</option>
+                <option value="CoronaryArtery">冠脉</option>
+                <option value="liver">肝脏</option>
+                <option value="skeleton">骨骼</option>
+                <option value="Eye tumor">眼肿瘤</option>
+                <option value="MultipleOrgans">多器官</option>
+            </select>
+        </div>
+
+        <label class="row-label">图像配准:</label>
+        <div class="row-input">
+            <select data-toggle="selectpicker" data-width="200" name="registration" multiple="">
+                <option value="Brain">大脑</option>
+                <option value="Vessel">血管</option>
+                <option value="Liver">肝脏</option>
+            </select>
+        </div>
+
+        <label class="row-label">重建:</label>
+        <div class="row-input">
+            <select data-toggle="selectpicker" data-width="200" name="reconstruct" multiple="">
+                <option value="Brain">血管</option>
+                <option value="Vessel">鼻腔</option>
+                <option value="Liver">超声体数据</option>
+            </select>
+        </div>
+
+        <label class="row-label">其他用途:</label>
+        <div class="row-input">
+            <input type="checkbox" name="VR" id="j_custom_male" data-toggle="icheck" value="VR"
+                   data-label="增强现实混合渲染">
+            <input type="checkbox" name="restoration" id="j_custom_female" data-toggle="icheck" value="restoration"
+                   data-label="图像复原">
+            <input type="checkbox" name="feature" id="j_custom_female" data-toggle="icheck" value="feature"
+                   data-label="特征匹配">
+        </div>
+
+
+
+
+
+
+    </div>
+    <hr style="margin:5px 0 15px;">
+    <div class="text-center">
+        <button type="button" class="btn-default" data-icon="search" onclick="search()">搜索</button>
+    </div>
+</form>
+<div class="bjui-pageFooter">
+    <ul>
+        <li>
+            <button id="closewin" type="button" class="btn-close" data-icon="close">关闭</button>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+    function search() {
+
+        BJUI.navtab({
+            id: 'imgsearch',
+            url: 'html/form/search/advanced-search-img-result.html',
+            data: $('#img_info_import').serialize(),
+            title: '影像数据检索结果'
+        })
+
+        $("#closewin").click();
+
+
+    }
+</script>

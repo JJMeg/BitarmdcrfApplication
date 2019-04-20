@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bit.armdcrf.dao.userDao">
-  <resultMap id="BaseResultMap" type="com.bit.armdcrf.entity.User">
-    <result column="id" jdbcType="SMALLINT" property="id"/>
-    <result column="userName" jdbcType="VARCHAR" property="username"/>
-    <result column="userPwd" jdbcType="VARCHAR" property="userpwd"/>
-    <result column="roleId" jdbcType="TINYINT" property="roleid"/>
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.bit.armdcrf.entity.User">
+        <result column="id" jdbcType="SMALLINT" property="id"/>
+        <result column="userName" jdbcType="VARCHAR" property="username"/>
+        <result column="userPwd" jdbcType="VARCHAR" property="userpwd"/>
+        <result column="roleId" jdbcType="TINYINT" property="roleid"/>
+    </resultMap>
 
-  <insert id="addUser" parameterType="com.bit.armdcrf.entity.User">
+    <insert id="addUser" parameterType="com.bit.armdcrf.entity.User">
          INSERT INTO user (username, userpwd, roleid) VALUES (#{username}, #{userpwd}, #{roleid})
     </insert>
 
-  <select id="getByUsername" resultType="com.bit.armdcrf.entity.User">
+    <select id="getByUsername" resultType="com.bit.armdcrf.entity.User">
     SELECT * FROM
     user
     WHERE
     username = #{username}
   </select>
 
-  <select id="getAllUser" resultType="com.bit.armdcrf.entity.User">
+    <select id="getAllUser" resultType="com.bit.armdcrf.entity.User">
     SELECT * FROM
     user
   </select>
+
 </mapper>
