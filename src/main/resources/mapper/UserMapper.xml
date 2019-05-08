@@ -12,7 +12,7 @@
          INSERT INTO user (username, userpwd, roleid) VALUES (#{username}, #{userpwd}, #{roleid})
     </insert>
 
-    <select id="getByUsername" resultType="com.bit.armdcrf.entity.User">
+    <select id="getByUsername" parameterType="java.lang.String" resultType="com.bit.armdcrf.entity.User">
     SELECT * FROM
     user
     WHERE
@@ -22,6 +22,13 @@
     <select id="getAllUser" resultType="com.bit.armdcrf.entity.User">
     SELECT * FROM
     user
+  </select>
+
+    <select id="getListByUsername" parameterType="java.lang.String" resultType="com.bit.armdcrf.entity.User">
+    SELECT * FROM
+    user
+    WHERE
+    username = #{username}
   </select>
 
 </mapper>

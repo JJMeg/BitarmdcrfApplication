@@ -40,6 +40,11 @@ public class userServiceImpl implements userService {
   }
 
   @Override
+  public List<User> getListByUsername(String username) {
+      return userDao.getListByUsername(username);
+  }
+
+  @Override
   public List<User> findAllUser(int pageNum, int pageSize) {
     return null;
   }

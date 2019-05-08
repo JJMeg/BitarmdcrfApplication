@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(WebSecurity webSecurity) throws Exception{
         webSecurity.ignoring().antMatchers("/login.html","/login_timeout.html","/assets/**",
-                "/B-JUI/**","/images/**","/json/**");
+                "/B-JUI/**","/images/**","/json/**","/web/**");
     }
 
 

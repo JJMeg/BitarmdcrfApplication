@@ -34,13 +34,14 @@
             height: '100%',
             gridTitle : '用户检索结果',
             showToolbar: true,
-            toolbarItem: 'export,exportf',
+            //toolbarItem: 'export,exportf',
             showCheckboxcol: true,
             local: 'local',
+            type : 'get',
             dataUrl: 'user/search_user?'+value,
             showToolbar: true,
             //toolbarCustom: globallistbar,
-            toolbarItem: 'export,exportf',
+            //toolbarItem: 'export,exportf',
 
             // exportOption: {type:'file', options:{url:'#', loadingmask:true}},
             paging: {pageSize:50, pageCurrent:10},
@@ -50,7 +51,7 @@
 
             columns: [
                 {
-                    name: 'userID',
+                    name: 'id',
                     label: '用户编号',
                     align: 'center',
                     width: 70
@@ -68,13 +69,13 @@
                     width: 70
                 },
                 {
-                    name: 'userrole',
+                    name: 'roleid',
                     label: '用户角色',
                     align: 'center',
                     width: 70
                 },
                 {
-                    name: 'uri',
+                    name: 'roleid',
                     label: '升级角色',
                     align: 'center',
                     render: function (value, data) {uri = data.uri; return '<button type="button" class="btn-blue"  onclick="viewUser()">查看</button>' },

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>智能归档平台登录页</title>
+    <link href="web/css/style.css" rel="stylesheet">
+    <link href="web/css/page/backend/login.css" rel="stylesheet">
+
+
+</head>
+<body>
+<div id="hd">
+    <div class="logo main-content">
+        <ul class="head-link">
+            <li><a href="">平台首页</a></li>
+            <li><a href="">帮助中心</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="bd" class="login-bd">
+    <div class="main-content">
+        <div class="input-box">
+            <div class="input-hd"><h2>用户登录</h2></div>
+
+            <div class="input-area">
+                <div class="alert alert-error">
+                    <i class="iconfont">&#xe617;</i>
+                    <span>请输入用户名</span>
+                </div>
+                <!--<form th:name="loginForm" method="post" action="user/login">-->
+                <form action="/login" id="login_form" method="post" >
+                    <!--登陆表单-->
+                    <div class="input-item">
+                        <p>登录名：</p>
+                        <input type="text" id="j_username" name="username" placeholder="请输入账号/邮箱">
+                    </div>
+
+                    <div class="input-item">
+                        <p>登录密码：</p>
+                        <input type="password" id="j_password" name="password" placeholder="请输入密码">
+                    </div>
+                    <div class="login-btn">
+                        <button type="submit" id="login_ok" style="color: #fff;background: #00a2ca">&nbsp;登&nbsp;录&nbsp;</button>
+                    </div>
+                </form>
+            </div>
+            <p class="reg">&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:;">立即注册</a></p>
+        </div>
+    </div>
+</div>
+
+<div id="ft" class="login-ft">
+    <div class="footer-copyright">
+        <p class="clearfix links">
+            <a href="javascript:;" target="_blank">关于我们</a>
+            <a href="javascript:;" target="_blank">法律声明</a>
+            <a href="javascript:;">服务条款</a>
+            <a href="javascript:;" target="_blank">联系方式</a>
+        </p>
+        <p style="font-family:arial;">地址：北京市海淀区中关村南大街5号&nbsp;&nbsp;2009-2019&nbsp;<a href="http://www.bit.edu.cn/">北京理工大学</a>&nbsp;版权所有&nbsp;
+        </p>
+        <p style="font-family:arial;">计算机学院实验室&nbsp;&nbsp;智能管理平台&nbsp;&nbsp;版权所有</p>
+    </div>
+</div>
+
+
+</body>
+</html>

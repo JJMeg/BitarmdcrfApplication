@@ -1,11 +1,11 @@
 
 <div class="bjui-pageHeader" style="background-color:#fff; border-bottom:none;">
-    <form data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+    <form action="" id="user_name" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
         <fieldset>
             <legend style="font-weight:normal;">用户搜索：</legend>
             <div style="margin:0; padding:1px 5px 5px;">
                 <!-- <span>病人编号：</span> -->
-                <input type="text" name="obj.code" id="code" class="form-control" list="list" size="60" style="width: 600px;"
+                <input type="text" name="user_name" id="code" class="form-control" list="list" size="60" style="width: 600px;"
                        placeholder="请输入用户名"
                        value="">
 
@@ -32,9 +32,9 @@
 
         BJUI.navtab({
             id:  'usersearch',
-            url: 'html/form/imgSearchResult.html',
-            data:$('#img_info_import').serialize(),
-            title: '影像数据检索结果'
+            url: 'html/form/setting/user-search-result.html',
+            data:$('#user_name').serialize(),
+            title: '用户检索结果'
         })
 
         $("#closewin").click();
