@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     public void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/getKaptcha").permitAll()
+        http.authorizeRequests().antMatchers("/getKaptcha","/register.html").permitAll()
                 .anyRequest().authenticated()
                 .antMatchers("/index").hasAuthority("ADMIN")
                 .and()
@@ -42,14 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
                 .and()
                 .logout();
+
                 //.logoutSuccessUrl("/index.html");
         http.csrf().disable();
     }
 
     @Override
     public void configure(WebSecurity webSecurity) throws Exception{
-        webSecurity.ignoring().antMatchers("/login.html","/login_timeout.html","/assets/**",
-                "/B-JUI/**","/images/**","/json/**","/web/**");
+        webSecurity.ignoring().antMatchers("/login.html","/login_timeout.html","register.html","/assets/**",
+                "/B-JUI/**","/images/**","/json/**","/web/**","/user/addUser");
     }
 
 

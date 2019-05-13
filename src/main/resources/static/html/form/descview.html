@@ -1,0 +1,93 @@
+
+<div class="row">
+    <div class="col-sm-2">
+        <input type="hidden" id = "uri" name="uri" value="">
+        <ul id="ztree-word-crf1" class="ztree" data-toggle="ztree" data-options="{onClick: 'ZtreeClick'}">
+
+            <li data-id="1" data-pid="0" data-faicon="folder-o" data-faicon-close="folder" >数据概况</li>
+
+            <li data-id="1-1" data-pid="1"   data-faicon="file-word-o" >基本信息</li>
+
+            <li data-id="1-2" data-pid="1"  data-faicon="file-word-o" >归档信息</li>
+
+
+
+            <li data-id="2" data-pid="0" data-faicon="folder-o" data-faicon-close="folder">数据描述</li>
+
+            <li data-id="2-1-2" data-pid="2"  data-faicon="file-word-o" >数据类型</li>
+
+            <li data-id="2-2" data-pid="2"  data-faicon="file-word-o" >数据用途</li>
+
+
+
+        </ul>
+
+    </div>
+
+    <div class="col-sm-9">
+
+        <div class="highlight" id="wordText">
+            <!--<pre class="prettyprint" id="wordText" style="padding-left: 30px;">-->
+
+            <p>点击左侧目录，查看病历对应部分内容。</p>
+            <!--</pre>-->
+        </div>
+    </div>
+</div>
+
+<div class="bjui-pageFooter">
+    <ul>
+
+        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+        <li><button type="button" onclick="edit()" class="btn-orange" data-icon="edit" data-toggle="dialog"
+                    data-options="{id:'word_edit', url:'../../html/form/wordedit.html',
+                            width:1200, height:500, mask:true,title:'病历编辑'}">编辑</button></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var uri;
+    var crf_part;
+
+    $(function() {
+
+        var data = $('#bjui-navtab .navtab-tab > li.active').data('options');
+        $.each(data,function(key,values) {
+            if (key == 'data') {
+                uri = values;
+            }
+        });
+    });
+
+
+    function ZtreeClick(event, treeId, treeNode) {
+        if(treeNode.pId == null) return false;
+
+        else{
+            crf_part = treeNode.id;
+            BJUI.ajax('doajax', {
+                url: 'data/crf_text',
+                data: {crf_part:crf_part,uri:uri},
+                loadingmask: true,
+                okCallback: function(json) {
+                    var content = json.content;
+
+                    var str = "";
+                    for(var key = 0; key < content.length;key ++){
+                        var c = content[key];
+                        str += "<p>"+c+"</p>";
+                    }
+                    $("#wordText").html(str);
+                }
+            })
+        }
+
+    };
+
+
+
+
+
+
+
+</script>

@@ -3,14 +3,16 @@ package com.bit.armdcrf.controller;
 import com.bit.armdcrf.entity.Fileserver;
 import com.bit.armdcrf.service.Impl.fileServerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-@RestController
-@RequestMapping(value = "server")
+@Component
+@RequestMapping(value = "/server")
 public class ServerController {
 
   @Autowired
@@ -48,6 +50,13 @@ public class ServerController {
       return result;
     }
 
+  }
+
+  @RequestMapping(value = "/search_server", method = RequestMethod.POST)
+  @ResponseBody
+  public List<Fileserver> searchUser(@RequestParam("server_search_name") String name) {
+    List<Fileserver> servers = fileServerService.getListByName(name);
+    return servers;
   }
 
 }

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+    <title>template智能归档平台注册页</title>
+    <link href="web/css/style.css" rel="stylesheet">
+    <link href="web/css/page/backend/register.css" rel="stylesheet">
+    <script>
+        function checkForm() {
+            var patten = /^[a-zA-Z]\w{3,15}$/ig;
+            var username = document.getElementById("username").value;
+            if (username == ""){
+                alert("用户名不可为空！");
+                return false;
+            }else if (!patten.test(username)){
+                alert("用户名非法！");
+                return false;
+            }
+        }
+        function showUserTips(){
+
+            document.getElementById("userTips").innerHTML = "用户名必填";
+        }
+
+        function checkName(){
+            var patten = /^[a-zA-Z]\w{3,15}$/ig;
+            var username = document.getElementById("username").value;
+            if (username == ""){
+                document.getElementById("userTips").innerHTML = "<font color='#b22222'>用户名错误</font>";
+                return false;
+            }else if (!patten.test(username)){
+                alert("用户名非法！");
+                return false;
+            }else{
+                document.getElementById("userTips").innerHTML = "";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<!--导航栏部分-->
+
+<div id="hd">
+    <div class="logo main-content">
+
+        <ul class="head-link">
+            <li><a href="">平台首页</a></li>
+            <li><a href="">帮助中心</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="regbd" class="login-bd">
+    <div class="main-content">
+        <div class="input-box" height="350px">
+            <div class="input-hd"><h2>用户注册</h2></div>
+
+            <div class="input-area">
+                <form th:name="regForm" method="post" action="user/addUser" >
+                    <!--登陆表单-->
+                    <div class="input-item">
+                        <p>登录名：</p>
+                        <input type="text" id="username" name="username" placeholder="请输入账号/邮箱" onfocus="showUserTips()" onblur="checkName()"><span id="userTips"></span>
+                    </div>
+
+                    <div class="input-item">
+                        <p>登录密码：</p>
+                        <input type="password" id="password" name="userpwd" placeholder="请输入密码">
+                    </div>
+
+                    <div class="input-item">
+                        <p>登录密码：</p>
+                        <input type="password" id="passwordCon" name="userpwdCon" placeholder="请再次输入密码">
+                    </div>
+
+                    <div class="login-btn" >
+                        <input type="submit" value="注册"  onsubmit="register()" style="color: #fff;background: #00a2ca">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--版权信息部分-->
+<div id="ft" class="login-ft">
+    <div class="footer-copyright">
+        <p class="clearfix links">
+            <a href="javascript:;" target="_blank">关于我们</a>
+            <a href="javascript:;" target="_blank">法律声明</a>
+            <a href="javascript:;">服务条款</a>
+            <a href="javascript:;" target="_blank">联系方式</a>
+        </p>
+        <p style="font-family:arial;">地址：北京市海淀区中关村南大街5号&nbsp;&nbsp;2009-2019&nbsp;<a
+                href="http://www.bit.edu.cn/">北京理工大学</a>&nbsp;版权所有&nbsp;
+        </p>
+        <p style="font-family:arial;">计算机学院实验室&nbsp;&nbsp;智能管理平台&nbsp;&nbsp;版权所有</p>
+    </div>
+</div>
+</body>
+
+<script>
+    function register(){
+        var token = $("meta[name='_csrf']").attr("content");
+        var jsonObj = {"username": $('#username').val(), "userpwd": $('#password').val()};
+        alert(token)
+        print(jsonObj)
+        $.ajax({
+            type: 'POST',
+            url: "/user/addUser",
+            dataType: "json",
+            contentType : "application/json",
+            headers: {"X-CSRF-TOKEN": token},
+            data: JSON.stringify(jsonObj),
+            success: function(data) {
+                console.log(data)
+            },
+            error: function() {
+                console.log("fucking error")
+            }
+        });
+    }
+</script>
+</html>
+
+

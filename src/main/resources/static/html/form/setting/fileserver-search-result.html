@@ -15,10 +15,6 @@
 
     }
     $(function() {
-
-
-
-
         var data = $('#bjui-navtab .navtab-tab > li.active').data('options');
 
         var value;
@@ -42,7 +38,7 @@
             //toolbarCustom: globallistbar,
             toolbarItem: 'export,exportf',
 
-            // exportOption: {type:'file', options:{url:'#', loadingmask:true}},
+            exportOption: {type:'file', options:{url:'#', loadingmask:true}},
             paging: {pageSize:50, pageCurrent:10},
             linenumberAll: true,
             tableWidth:'100%',
@@ -50,25 +46,25 @@
 
             columns: [
                 {
-                    name: 'serverID',
+                    name: 'id',
                     label: '服务器编号',
                     align: 'center',
                     width: 70
                 },
                 {
-                    name: 'serverIP',
+                    name: 'ip',
                     label: '服务器地址',
                     align: 'center',
                     width: 70
                 },
                 {
-                    name: 'serverport',
+                    name: 'port',
                     label: '端口号',
                     align: 'center',
                     width: 70
                 },
                 {
-                    name: 'servername',
+                    name: 'name',
                     label: '服务器命名',
                     align: 'center',
                     width: 70
@@ -77,7 +73,7 @@
                     name: 'uri',
                     label: '修改配置',
                     align: 'center',
-                    render: function (value, data) {uri = data.uri; return '<button type="button" class="btn-blue"  onclick="viewUser()">查看</button>' },
+                    render: function (value, data) {uri = data.uri; return '<button type="button" class="btn-blue"  onclick="viewUser()">保存修改</button>' },
                     width: 70
                 },
 

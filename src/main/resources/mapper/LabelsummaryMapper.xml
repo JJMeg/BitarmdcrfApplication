@@ -9,7 +9,7 @@
     <result column="labelKey" jdbcType="VARCHAR" property="labelkey" />
     <result column="labelValue" jdbcType="VARCHAR" property="labelvalue" />
   </resultMap>
-  <select id="getBylabelKey" parameterType="int" resultType="string">
+  <select id="getBylabelKey" parameterType="string" resultType="string">
     SELECT labelvalue FROM
     labelSummary
     WHERE

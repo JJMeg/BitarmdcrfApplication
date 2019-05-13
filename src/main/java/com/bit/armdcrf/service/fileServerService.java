@@ -2,6 +2,7 @@ package com.bit.armdcrf.service;
 
 import com.bit.armdcrf.entity.Fileserver;
 
+import java.util.List;
 import java.util.Map;
 
 public interface fileServerService {
@@ -16,4 +17,6 @@ public interface fileServerService {
   public boolean addFileServer(Fileserver fileserver);
 
   public Fileserver getByNameIp(String name,String ip);
+
+  public List<Fileserver> getListByName(String str);
 }

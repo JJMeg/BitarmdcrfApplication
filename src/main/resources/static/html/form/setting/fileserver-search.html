@@ -1,11 +1,11 @@
 
 <div class="bjui-pageHeader" style="background-color:#fff; border-bottom:none;">
-    <form data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
+    <form id="server_search_name" data-toggle="ajaxsearch" data-options="{searchDatagrid:$.CurrentNavtab.find('#datagrid-test-filter')}">
         <fieldset>
             <legend style="font-weight:normal;">文件服务器搜索：</legend>
             <div style="margin:0; padding:1px 5px 5px;">
                 <!-- <span>病人编号：</span> -->
-                <input type="text" name="obj.code" id="code" class="form-control" list="list" size="60" style="width: 600px;"
+                <input type="text" name="server_search_name" id="code" class="form-control" list="list" size="60" style="width: 600px;"
                        placeholder="请输入服务器名称或IP地址"
                        value="">
 
@@ -33,7 +33,7 @@
         BJUI.navtab({
             id:  'serversearch',
             url: 'html/form/setting/server-search-result.html',
-            data:$('#img_info_import').serialize(),
+            data:$('#server_search_name').serialize(),
             title: '文件服务器检索结果'
         })
 

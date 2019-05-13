@@ -48,4 +48,19 @@
     and
     name = #{name}
     </select>
+
+    <select id="getListByName" parameterType="string" resultType="com.bit.armdcrf.entity.Fileserver">
+    SELECT * FROM
+    fileServer
+    WHERE
+    name = #{name}
+    and
+    </select>
+
+    <select id="getListByIp" parameterType="string" resultType="com.bit.armdcrf.entity.Fileserver">
+    SELECT * FROM
+    fileServer
+    WHERE
+    ip LIKE concat(concat('%',#{ip}),'%')
+    </select>
 </mapper>

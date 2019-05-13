@@ -6,6 +6,7 @@ import com.bit.armdcrf.service.fileServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 @Component
@@ -55,4 +56,11 @@ public class fileServerServiceImpl implements fileServerService {
     System.out.println(fileserverInDB.getName() + fileserverInDB.getIp());
     return fileserverInDB;
   }
+
+  @Override
+  public List<Fileserver> getListByName(String str) {
+    return fileServerDao.getListByName(str);
+  }
+
+
 }

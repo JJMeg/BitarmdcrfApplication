@@ -3,11 +3,11 @@
     var userID;
 
 
-    function viewUser() {
+    function setUser() {
 
         BJUI.navtab({
-            id: 'viewuser',
-            url: 'html/form/viewuser.html?userId='+userID,
+            id: 'setuser',
+            url: 'user/setAdmin?'+userID,
             data:uri,
             title: '病历数据查看'
         })
@@ -78,7 +78,7 @@
                     name: 'roleid',
                     label: '升级角色',
                     align: 'center',
-                    render: function (value, data) {uri = data.uri; return '<button type="button" class="btn-blue"  onclick="viewUser()">查看</button>' },
+                    render: function (value, data) {uri = data.uri; return '<button type="button" class="btn-blue"  onclick="setUser()">赋权</button>' },
                     width: 70
                 },
 
