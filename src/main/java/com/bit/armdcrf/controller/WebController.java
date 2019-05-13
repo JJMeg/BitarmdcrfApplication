@@ -90,7 +90,7 @@ public class WebController {
                 "        {'id':'usersetting', 'name':'1用户中心', 'target':'navtab', 'url':'html/form/setting/user-search.html'}" +
                 "    ]}" +
                 "    {'name':'1分析统计', 'children':[" +
-                "        {'id':'wordsearch', 'name':'1数据总览', 'target':'navtab', 'url':'html/form/wordsearch.html'}" +
+                "        {'id':'wordsearch', 'name':'1数据总览', 'target':'navtab', 'url':'html/form/TT.html'}" +
                 "        {'id':'imgsearch', 'name':'1数据明细', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
                 "    ]}" +
 

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>图库统计</title>
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/backend.css" rel="stylesheet">
+    <link href="../css/page/backend/assets.css" rel="stylesheet"></head>
+<link href="../js/select2/css/select2.min.css" rel="stylesheet">
+<body>
+
+
+<div id="bd">
+    <div class="main-wrap-bk clearfix">
+
+        <div class="bd-content-wrap">
+            <div class="bd-content">
+
+                <div class="lf-rt clearfix">
+                    <div class="lf">
+                        <div class="lf-inner clearfix">
+                            <div class="total">
+                                <div class="circle">
+                                    <i class="iconfont">&#xe622;</i>
+                                </div>
+                                <div class="num">237</div>
+                                <div class="num-label">资产总数</div>
+                            </div>
+                            <div class="detail">
+                                <div class="up">
+                                    <div class="asset-item">
+                                        <div class="item-num">28</div>
+                                        <div class="item-label">业务系统</div>
+                                    </div>
+                                    <div class="asset-item">
+                                        <div class="item-num">54</div>
+                                        <div class="item-label">服务器</div>
+                                    </div>
+                                    <div class="asset-item">
+                                        <div class="item-num">15</div>
+                                        <div class="item-label">数据库</div>
+                                    </div>
+                                </div>
+                                <div class="down">
+                                    <div class="asset-item">
+                                        <div class="item-num">3</div>
+                                        <div class="item-label">网络设备</div>
+                                    </div>
+                                    <div class="asset-item">
+                                        <div class="item-num">104</div>
+                                        <div class="item-label">安全设备</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="lf-rt clearfix middle">
+                    <div class="lf">
+                        <div class="lf-wrap">
+                            <div class="lf-wrap-inner">
+                                <div class="title">单位资产总体情况</div>
+                                <div class="chart1" id="chart1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rt">
+                        <div class="rt-wrap">
+                            <div class="rt-wrap-inner">
+                                <div class="title">单位业务系统等级保护情况</div>
+                                <div class="chart2" id="chart2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dept">
+                    <div class="title">单位资产国产化率情况</div>
+                    <div class="chart3" id="chart3"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/echarts.min.js"></script>
+
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+
+    option = {
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                roseType: 'angle',
+                data:[
+                    {value:235, name:'视频广告'},
+                    {value:274, name:'联盟广告'},
+                    {value:310, name:'邮件营销'},
+                    {value:335, name:'直接访问'},
+                    {value:400, name:'搜索引擎'}
+                ]
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+</html>
