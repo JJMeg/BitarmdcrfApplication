@@ -222,4 +222,15 @@ public class DataController {
         json.put("value",data);
         return json;
     }
+
+    @RequestMapping(value = "test_echarts1",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> test_echarts1(){
+        Map<String,Object> json = new HashMap<>();
+        String[] categories = {"衬衫22","羊毛衫22","雪纺衫22","裤子22","高跟鞋22","袜子22"};
+        json.put("name", categories);
+        int[] data =  {5, 20, 36, 10, 10, 20};
+        json.put("value",data);
+        return json;
+    }
 }

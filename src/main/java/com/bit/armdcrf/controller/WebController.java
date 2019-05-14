@@ -91,7 +91,8 @@ public class WebController {
                 "    ]}" +
                 "    {'name':'1分析统计', 'children':[" +
                 "        {'id':'wordsearch', 'name':'1数据总览', 'target':'navtab', 'url':'html/form/TT.html'}" +
-                "        {'id':'imgsearch', 'name':'1数据明细', 'target':'navtab', 'url':'html/form/imgsearch.html'}" +
+                "        {'id':'typestatics', 'name':'1数据类型统计报表', 'target':'navtab', 'url':'html/form/statics/dataType.html'}" +
+                "        {'id':'usagestatics', 'name':'1数据用途统计报表', 'target':'navtab', 'url':'html/form/statics/dataUsage.html'}" +
                 "    ]}" +
 
 

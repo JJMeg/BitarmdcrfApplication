@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+
+    <script src="assets/echarts.min.js"></script>
+    <script src="B-JUI/js/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+<!-- 可以异步多请求 -->
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div class="bjui-row col-1">
+
+    <div class="row-input">
+        <div id="main" style="width: 600px;height:300px;"></div>
+    </div>
+    <div class="row-input">
+        <div id="main1" style="width: 400px;height:300px;"></div>
+    </div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        myChart.setOption({
+            title: {
+                text: '异步数据加载示例'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: []
+            }]
+        });
+
+
+        myChart.showLoading();
+        // $.ajax({
+        //     type : "post",
+        //     async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        //     // url : "TestServlet",    //请求发送到TestServlet处
+        //     data : {},
+        //     dataType : "json",
+        //     url: '/data/test_echarts',
+        //     async : true,
+        //     success: function(json) {
+        //         //BJUI.alertmsg('ok', json.name);
+        //         myChart.hideLoading();
+        //         myChart.setOption({        //加载数据图表
+        //             xAxis: {
+        //                 data: json.name
+        //             },
+        //             series: [{
+        //                 // 根据名字对应到相应的系列
+        //                 type: 'bar',
+        //                 name: '销量',
+        //                 data: json.value
+        //             }],
+        //             legend: {
+        //                 data: ['销量']
+        //             },
+        //             title: {
+        //                 text: 'ECharts 入门示例'
+        //
+        //             }
+        //         });
+        //     }
+        // })
+
+
+        // // 指定图表的配置项和数据
+        // var option = {
+        //     title: {
+        //         text: 'ECharts 入门示例'
+        //
+        //     },
+        //     tooltip: {},
+        //     legend: {
+        //         data: ['销量']
+        //     },
+        //     xAxis: {
+        //         // data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        //         data:[]
+        //     },
+        //     yAxis: {},
+        //     series: [{
+        //         name: '销量',
+        //         type: 'bar',
+        //         //data: [5, 20, 36, 10, 10, 20]
+        //         data:[]
+        //     }]
+        // };
+        //
+        //
+
+        // option = {
+        //     title: {
+        //         text: 'ECharts入门示例',
+        //         textAlign: 'left'
+        //     },
+        //     series: [
+        //         {
+        //             name: '访问来源',
+        //             type: 'pie',
+        //             radius: '55%',
+        //             roseType: 'angle',
+        //             data: ss
+        //         }
+        //     ],
+        //     backgroundColor:'#428bca'
+        // };
+
+        // 使用刚指定的配置项和数据显示图表。
+        //myChart.setOption(option);
+
+        var myChart1 = echarts.init(document.getElementById('main1'));
+
+        myChart1.setOption({
+            title: {
+                text: 'ECharts 入门示例',
+                textAlign: 'left'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                //data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                //data: [5, 20, 36, 10, 10, 20]
+                data: []
+            }]
+        });
+
+        // option1 = {
+        //     title: {
+        //         text: 'ECharts 入门示例2',
+        //         textAlign: 'left'
+        //     },
+        //     series: [
+        //         {
+        //             name: '访问来源',
+        //             type: 'pie',
+        //             radius: '55%',
+        //             roseType: 'angle',
+        //             data: [
+        //                 {value: 235, name: '视频广告'},
+        //                 {value: 274, name: '联盟广告'},
+        //                 {value: 310, name: '邮件营销'},
+        //                 {value: 335, name: '直接访问'},
+        //                 {value: 400, name: '搜索引擎'}
+        //             ]
+        //         }
+        //     ]
+        // };
+
+        myChart1.showLoading();
+
+        $.when(
+            $.ajax({
+                type: "post",
+                async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                // url : "TestServlet",    //请求发送到TestServlet处
+                data: {},
+                dataType: "json",
+                url: '/data/test_echarts',
+                async: true,
+                success: function (json) {
+                    //BJUI.alertmsg('ok', json.name);
+                    myChart.hideLoading();
+                    myChart.setOption({        //加载数据图表
+                        xAxis: {
+                            data: json.name
+                        },
+                        series: [{
+                            // 根据名字对应到相应的系列
+                            type: 'bar',
+                            name: '销量',
+                            data: json.value
+                        }],
+                        legend: {
+                            data: ['销量']
+                        },
+                        title: {
+                            text: 'ECharts 入门示例'
+
+                        }
+                    });
+                }
+            }),
+
+            $.ajax({
+                type: "post",
+                async: false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                // url : "TestServlet",    //请求发送到TestServlet处
+                data: {},
+                dataType: "json",
+                url: '/data/test_echarts1',
+                //async : true,
+                success: function (json1) {
+                    //BJUI.alertmsg('ok', json.name);
+                    myChart1.hideLoading();
+                    myChart1.setOption({        //加载数据图表
+                        xAxis: {
+                            data: json1.name
+                        },
+                        series: [{
+                            // 根据名字对应到相应的系列
+                            type: 'bar',
+                            name: '销量',
+                            data: json1.value
+                        }],
+                        legend: {
+                            data: ['销量']
+                        },
+                        title: {
+                            text: 'ECharts 入门示例2'
+
+                        }
+                    });
+                }
+            })
+        )
+        //myChart1.setOption(option1);
+
+    </script>
+</div>
+</body>
+</html>
