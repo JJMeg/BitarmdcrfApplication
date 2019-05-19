@@ -233,4 +233,26 @@ public class DataController {
         json.put("value",data);
         return json;
     }
+
+    @RequestMapping(value = "test_echarts_get",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> test_echarts_get(){
+        Map<String,Object> json = new HashMap<>();
+        String[] categories = {"衬衫22","羊毛衫22","雪纺衫22","裤子22","高跟鞋22","袜子22"};
+        json.put("name", categories);
+        int[] data =  {5, 20, 36, 10, 10, 20};
+        json.put("value",data);
+        return json;
+    }
+
+    @RequestMapping(value = "test_echarts1_get",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> test_echarts1_get(){
+        Map<String,Object> json = new HashMap<>();
+        String[] categories = {"衬衫11","羊毛衫11","雪纺衫11","裤子11","高跟鞋11","袜子11"};
+        json.put("name", categories);
+        int[] data =  {5, 20, 36, 10, 10, 20};
+        json.put("value",data);
+        return json;
+    }
 }

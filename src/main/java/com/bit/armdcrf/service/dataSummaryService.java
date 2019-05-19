@@ -16,4 +16,8 @@ public interface dataSummaryService {
   public List<Datasummary> getByFileName(String filename);
 
   public List<Datasummary> getByFileServer(int fileserver);
+
+  public int getSumOfAll();
+
+  public int getSumByCreator();
 }

@@ -73,4 +73,16 @@
     WHERE
     fileserver = #{fileserver}
   </select>
+
+  <select id="getSumOfAll" parameterType="int" resultType="int">
+    SELECT count(*) as groupNum,sum(filenum) as fileNum FROM
+    dataSummary
+  </select>
+
+  <select id="getSumByCreator" parameterType="int" resultType="int">
+    SELECT count(*) as groupNum,sum(filenum) as fileNum ,creator FROM
+    dataSummary group by creator
+  </select>
+
+
 </mapper>

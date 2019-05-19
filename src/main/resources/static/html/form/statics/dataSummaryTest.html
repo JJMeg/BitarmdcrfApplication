@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+
+    <script src="assets/echarts.min.js"></script>
+    <script src="B-JUI/js/jquery-1.11.3.min.js"></script>
+    <style type="text/css">
+        @font-face {
+            font-family: 'iconfont';
+            src: url('html/form/fonts/iconfont.eot?1462242749');
+            src: url('html/form/fonts/iconfont.eot?&1462242749#iefix') format("embedded-opentype"), url('html/form/fonts/iconfont.woff?1462242749') format("woff"), url('html/form/fonts/iconfont.ttf?1462242749') format("truetype"), url('html/form/fonts/iconfont.svg?1462242749#iconfont') format("svg")
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale
+        }
+    </style>
+</head>
+
+<body>
+<!-- 可以异步多请求 -->
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div class="bjui-row circle">
+    <i class="iconfont" style="color: #0c9d72 ;width:50px;height:55px">&#xe622;</i>
+    <div class="num">237</div>
+    <div class="num-label">资产总数</div>
+</div>
+<div>
+    <div class="col-md-5">
+        <div class="panel panel-default" style="width: 550px;height: 320px;">
+            <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>文件分布统计</h3></div>
+            <div class="panel-body">
+                <div id="main" style="width: 400px;height:280px;"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-default" style="width: 450px;height: 320px;">
+            <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>用户贡献统计</h3>
+            </div>
+            <div class="panel-body">
+                <div id="main1" style="width: 400px;height:280px;"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var summaryChart1 = echarts.init(document.getElementById('main'));
+        summaryChart1.setOption({
+            title: {
+                text: '异步数据加载示例'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel'],
+                        option: {
+                            funnel: {
+                                x: '25%',
+                                width: '50%',
+                                funnelAlign: 'left',
+                                max: 1548
+                            }
+                        }
+                    },
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: []
+            }]
+        });
+        summaryChart1.showLoading();
+
+
+        var summaryChart2 = echarts.init(document.getElementById('main1'));
+
+        summaryChart2.setOption({
+            title: {
+                text: 'ECharts 入门示例',
+                textAlign: 'left'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel'],
+                        option: {
+                            funnel: {
+                                x: '25%',
+                                width: '50%',
+                                funnelAlign: 'left',
+                                max: 1548
+                            }
+                        }
+                    },
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                //data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                //data: [5, 20, 36, 10, 10, 20]
+                data: []
+            }]
+        });
+        summaryChart2.showLoading();
+
+        $.when(
+            $.getJSON('/data/test_echarts1_get', function (json1) {
+                    //BJUI.alertmsg('ok', json.name);
+                    summaryChart1.hideLoading();
+                    summaryChart1.setOption({        //加载数据图表
+                        title: {
+                            text: 'ECharts 入门示例1',
+                            textAlign: 'left'
+                        },
+                        series: [
+                            {
+                                name: '访问来源',
+                                type: 'pie',
+                                radius: '55%',
+                                roseType: 'angle',
+                                data: [
+                                    {value: 235, name: '广告'},
+                                    {value: 274, name: '广告'},
+                                    {value: 310, name: '营销'},
+                                    {value: 335, name: '直接访问'},
+                                    {value: 400, name: '搜索引擎'}
+                                ]
+                            }
+                        ]
+                    })
+                }
+            ),
+
+            $.getJSON('/data/test_echarts_get', function (json) {
+                    //BJUI.alertmsg('ok', json.name);
+                    summaryChart2.hideLoading();
+                    summaryChart2.setOption({        //加载数据图表
+                        xAxis: {
+                            data: json.name
+                        },
+                        series: [{
+                            // 根据名字对应到相应的系列
+                            type: 'bar',
+                            name: '销量',
+                            data: json.value
+                        }],
+                        legend: {
+                            data: ['销量']
+                        },
+                        title: {
+                            text: 'ECharts 入门示例2'
+
+                        }
+
+                    })
+                }
+            )
+        )
+
+    </script>
+</div>
+</div>
+</body>
+</html>

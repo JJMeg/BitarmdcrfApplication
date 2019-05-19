@@ -31,8 +31,6 @@ public class StaticsController {
   public Map<String, Integer> asserts() {
     Map<String,Integer> results = new HashMap<>();
 
-
-
     return results;
   }
 

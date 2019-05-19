@@ -2,138 +2,298 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>图库统计</title>
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/backend.css" rel="stylesheet">
-    <link href="../css/page/backend/assets.css" rel="stylesheet"></head>
-<link href="../js/select2/css/select2.min.css" rel="stylesheet">
+    <title>ECharts</title>
+
+    <script src="assets/echarts.min.js"></script>
+    <script src="B-JUI/js/jquery-1.11.3.min.js"></script>
+</head>
+
 <body>
-
-
-<div id="bd">
-    <div class="main-wrap-bk clearfix">
-
-        <div class="bd-content-wrap">
-            <div class="bd-content">
-
-                <div class="lf-rt clearfix">
-                    <div class="lf">
-                        <div class="lf-inner clearfix">
-                            <div class="total">
-                                <div class="circle">
-                                    <i class="iconfont">&#xe622;</i>
-                                </div>
-                                <div class="num">237</div>
-                                <div class="num-label">资产总数</div>
-                            </div>
-                            <div class="detail">
-                                <div class="up">
-                                    <div class="asset-item">
-                                        <div class="item-num">28</div>
-                                        <div class="item-label">业务系统</div>
-                                    </div>
-                                    <div class="asset-item">
-                                        <div class="item-num">54</div>
-                                        <div class="item-label">服务器</div>
-                                    </div>
-                                    <div class="asset-item">
-                                        <div class="item-num">15</div>
-                                        <div class="item-label">数据库</div>
-                                    </div>
-                                </div>
-                                <div class="down">
-                                    <div class="asset-item">
-                                        <div class="item-num">3</div>
-                                        <div class="item-label">网络设备</div>
-                                    </div>
-                                    <div class="asset-item">
-                                        <div class="item-num">104</div>
-                                        <div class="item-label">安全设备</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="lf-rt clearfix middle">
-                    <div class="lf">
-                        <div class="lf-wrap">
-                            <div class="lf-wrap-inner">
-                                <div class="title">单位资产总体情况</div>
-                                <div class="chart1" id="chart1"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rt">
-                        <div class="rt-wrap">
-                            <div class="rt-wrap-inner">
-                                <div class="title">单位业务系统等级保护情况</div>
-                                <div class="chart2" id="chart2"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dept">
-                    <div class="title">单位资产国产化率情况</div>
-                    <div class="chart3" id="chart3"></div>
-                </div>
-
-            </div>
+<div class="col-md-5">
+    <div class="panel panel-default" style="width: 700px;height: 700px;">
+        <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>数据类型旭日图</h3>
+        </div>
+        <div class="panel-body">
+            <div id="dataTypeSun" style="width: 650px;height:650px;"></div>
         </div>
     </div>
-</div>
 
-<script src="assets/echarts.min.js"></script>
-
-<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div id="main" style="width: 600px;height:400px;"></div>
-<script type="text/javascript">
-
-    var myChart = echarts.init(document.getElementById('main'));
-
-    // 指定图表的配置项和数据
-    var option = {
-        title: {
-            text: 'ECharts 入门示例'
-        },
-        tooltip: {},
-        legend: {
-            data:['销量']
-        },
-        xAxis: {
-            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        },
-        yAxis: {},
-        series: [{
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-        }]
-    };
-
-    option = {
-        series : [
-            {
-                name: '访问来源',
-                type: 'pie',
-                radius: '55%',
-                roseType: 'angle',
-                data:[
-                    {value:235, name:'视频广告'},
-                    {value:274, name:'联盟广告'},
-                    {value:310, name:'邮件营销'},
-                    {value:335, name:'直接访问'},
-                    {value:400, name:'搜索引擎'}
+    <script type="text/javascript">
+        var myChartsXuri = echarts.init(document.getElementById('dataTypeSun'));
+        var option_Xuri = {
+            series: {
+                type: 'sunburst',
+                center: ['50%', '50%'],
+                levels: [{}, {}, {label: {
+                        position: 'outside',
+                        padding: 3,
+                        silent: false
+                    }}, {}, {}],
+                tooltip: {},
+                emphasis: {
+                    itemStyle: {
+                        color: 'red'
+                    }
+                },
+                highlight: {
+                    itemStyle: {
+                        color: 'orange'
+                    }
+                },
+                downplay: {
+                    itemStyle: {
+                        color: '#ccc'
+                    }
+                },
+                data: [
+                            {
+                                name: '手术术式',
+                                children: [
+                                    {
+                                        name: '心脏搭桥',
+                                        value: 19
+                                    },
+                                    {
+                                        name: '内镜',
+                                        value: 31
+                                    },
+                                    {
+                                        name: '动脉',
+                                        value: 33
+                                    },
+                                    {
+                                        name: '肝血管',
+                                        value: 45
+                                    },
+                                    {
+                                        name: '骨科',
+                                        value: 10
+                                    }
+                                ]
+                            },
+                            {
+                                name: '成像部位',
+                                children: [
+                                    {
+                                        name: '冠脉',
+                                        value: 43
+                                    },
+                                    {
+                                        name: '主动脉',
+                                        value: 13
+                                    },
+                                    {
+                                        name: '肝血管',
+                                        value: 33
+                                    },
+                                    {
+                                        name: '脑血管',
+                                        value: 8
+                                    },
+                                    {
+                                        name: '视网膜',
+                                        value: 5
+                                    },
+                                    {
+                                        name: '肝',
+                                        value: 53
+                                    },
+                                    {
+                                        name: '肾',
+                                        value: 17
+                                    },
+                                    {
+                                        name: '脑',
+                                        value: 20
+                                    },
+                                    {
+                                        name: '脊椎',
+                                        value: 6
+                                    },
+                                    {
+                                        name: '腿骨',
+                                        value: 8
+                                    },
+                                    {
+                                        name: '盆骨',
+                                        value: 21
+                                    },
+                                    {
+                                        name: '皮肤',
+                                        value: 24
+                                    },
+                                    {
+                                        name: '鼻腔',
+                                        value: 13
+                                    },
+                                    {
+                                        name: '眼部',
+                                        value: 10
+                                    }
+                                ]
+                            },
+                            {
+                                name: '病变类型',
+                                children: [
+                                    {
+                                        name: '脑肿瘤',
+                                        value: 19
+                                    },
+                                    {
+                                        name: '肝肿瘤',
+                                        value: 31
+                                    },
+                                    {
+                                        name: '动脉瘤',
+                                        value: 23
+                                    },
+                                    {
+                                        name: '眼肿瘤',
+                                        value: 4
+                                    },
+                                    {
+                                        name: '血管狭窄',
+                                        value: 9
+                                    },
+                                    {
+                                        name: '主动脉夹层',
+                                        value: 19
+                                    },
+                                    {
+                                        name: '肝硬化',
+                                        value: 20
+                                    },
+                                    {
+                                        name: '钙化',
+                                        value: 32
+                                    },
+                                    {
+                                        name: '正常',
+                                        value: 40
+                                    }
+                                ]
+                            },
+                            {
+                                name: '成像类型',
+                                children: [
+                                    {
+                                        name: 'CT',
+                                        value: 195
+                                    },
+                                    {
+                                        name: '4DCT',
+                                        value: 29
+                                    },
+                                    {
+                                        name: 'MR',
+                                        value: 109
+                                    },
+                                    {
+                                        name: 'XRAY',
+                                        value: 67
+                                    },
+                                    {
+                                        name: 'US',
+                                        value: 98
+                                    },
+                                    {
+                                        name: '内镜',
+                                        value: 65
+                                    },
+                                    {
+                                        name: 'PET',
+                                        value: 34
+                                    },
+                                    {
+                                        name: 'fMRI',
+                                        value: 4
+                                    },
+                                    {
+                                        name: '点云',
+                                        value: 13
+                                    },
+                                    {
+                                        name: '心电信号',
+                                        value: 20
+                                    },
+                                    {
+                                        name: '图片',
+                                        value: 67
+                                    }
+                                ]
+                            },
+                            {
+                                name: '来源渠道',
+                                children: [
+                                    {
+                                        name: '安贞',
+                                        value: 109
+                                    },
+                                    {
+                                        name: '段',
+                                        value: 67
+                                    },
+                                    {
+                                        name: '梁',
+                                        value: 98
+                                    },
+                                    {
+                                        name: '韩',
+                                        value: 65
+                                    },
+                                    {
+                                        name: '陈',
+                                        value: 34
+                                    },
+                                    {
+                                        name: '西南大',
+                                        value: 4
+                                    },
+                                    {
+                                        name: '同仁',
+                                        value: 13
+                                    },
+                                    {
+                                        name: '公开',
+                                        value: 20
+                                    }
+                                ]
+                            },
+                            {
+                                name: '采集阶段',
+                                children: [
+                                    {
+                                        name: '术前',
+                                        value: 176
+                                    },
+                                    {
+                                        name: '术中',
+                                        value: 190
+                                    },
+                                    {
+                                        name: '术后',
+                                        value: 208
+                                    }
+                                ]
+                            },
+                            {
+                                name: '是否含金标准',
+                                children: [
+                                    {
+                                        name: '含金标准',
+                                        value: 149
+                                    },
+                                    {
+                                        name: '不含金标准',
+                                        value: 239
+                                    }
+                                ]
+                            }
                 ]
             }
-        ]
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-</script>
-
-
+        };
+        myChartsXuri.setOption(option_Xuri);
+    </script>
+</div>
 </body>
 </html>

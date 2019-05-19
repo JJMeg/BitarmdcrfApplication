@@ -45,5 +45,15 @@ public class dataSummaryImpl implements dataSummaryService {
     return dataSummaryDao.getByFileServer(fileserver);
   }
 
+  @Override
+  public int getSumOfAll() {
+    return dataSummaryDao.getSumOfAll();
+  }
+
+  @Override
+  public int getSumByCreator() {
+    return dataSummaryDao.getSumByCreator();
+  }
+
 
 }
